@@ -2,12 +2,20 @@ package pageObjects;
 
 import core.BasePage;
 import org.openqa.selenium.WebDriver;
+import pageFactory.EmployeeListPageObject;
 import pageUIs.DashboardPageUI;
+import pageUIs.EmployeeListPageUI;
 
 public class DashboardPageObject extends BasePage {
     private WebDriver driver;
-    public void clickToPIMModule(WebDriver driver) {
+
+    public DashboardPageObject(WebDriver driver) {
+        this.driver = driver;
+    }
+
+    public EmployeeListPageObject clickToPIMModule() {
         waitElementClickable(driver, DashboardPageUI.PIM_MODULE);
-        clickToElement(driver,DashboardPageUI.PIM_MODULE);
+        clickToElement(driver, DashboardPageUI.PIM_MODULE);
+        return PageGeneratorGeneric.getPage(EmployeeListPageObject.class,driver);
     }
 }

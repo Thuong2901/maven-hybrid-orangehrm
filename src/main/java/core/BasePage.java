@@ -6,62 +6,65 @@ import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import pageObjects.BasePageUI;
+import pageUIs.BasePageUI;
 
 import java.time.Duration;
 import java.util.List;
 import java.util.Set;
 
 public class BasePage {
-    private WebDriver driver;
 
-    public static BasePage getInstance(){
+    // Hàm static có nhiệm vụ lấy ra đúng instance của chính class này
+    // 1 biến static/hàm static có thể gọi ra trực tiếp từ phạm vi class
+    public static BasePage getInstance() {
         return new BasePage();
     }
 
-    public void openPageUrl(WebDriver driver,String pageUrl){
-       driver.get(pageUrl);
-
+    public void openPageUrl(WebDriver driver, String pageUrl) {
+        driver.get(pageUrl);
     }
 
-    public String getPageTitle(WebDriver driver){
+    public String getPageTile(WebDriver driver) {
         return driver.getTitle();
     }
 
-    public String getPageUrl(WebDriver driver){
+    public String getPageUrl(WebDriver driver) {
         return driver.getCurrentUrl();
     }
 
-    public String getPageSource(WebDriver driver){
+    public String getPageSourceCode(WebDriver driver) {
         return driver.getPageSource();
     }
 
-    public void backToPage(WebDriver driver){
+    public void backToPage(WebDriver driver) {
+        driver.navigate().back();
+    }
+
+    public void forwordToPage(WebDriver driver) {
         driver.navigate().forward();
     }
 
-    public void refreshPage(WebDriver driver){
+    public void refreshToPage(WebDriver driver) {
         driver.navigate().refresh();
     }
 
-    private Alert waitAlertPresence(WebDriver driver){
-        return new WebDriverWait(driver, Duration.ofSeconds(30))
-                .until(ExpectedConditions.alertIsPresent());
+    private Alert waitAlertPresence(WebDriver driver) {
+        return new WebDriverWait(driver, Duration.ofSeconds(LONG_TIMEOUT)).until(ExpectedConditions.alertIsPresent());
     }
 
-    public void acceptToAlert(){
+    public void acceptToAlert(WebDriver driver) {
         waitAlertPresence(driver).accept();
     }
 
-    public void cancelToAlert(WebDriver driver){
+    public void cancelToAlert(WebDriver driver) {
         waitAlertPresence(driver).dismiss();
     }
 
-    public void sendKeyToAlert(WebDriver driver,String keyToSend){
+    public void sendKeyToAlert(WebDriver driver, String keyToSend) {
         waitAlertPresence(driver).sendKeys(keyToSend);
     }
 
-    public String getAlertText(WebDriver driver){
+    public String getAlertText(WebDriver driver) {
         return waitAlertPresence(driver).getText();
     }
 
@@ -136,7 +139,7 @@ public class BasePage {
         getWebElement(driver, locator).click();
     }
 
-    public void sendKeyToElement(WebDriver driver, String locator, String keyToSend) {
+    public void sendkeyToElement(WebDriver driver, String locator, String keyToSend) {
         getWebElement(driver, locator).sendKeys(keyToSend);
     }
 
@@ -311,7 +314,7 @@ public class BasePage {
     }
 
     public boolean waitListElementInvisible(WebDriver driver, String locator) {
-        return new WebDriverWait(driver, Duration.ofSeconds(LONG_TIMEOUT)).until(ExpectedConditions.invisibilityOfAllElements(getListElement(driver,locator)));
+        return new WebDriverWait(driver, Duration.ofSeconds(LONG_TIMEOUT)).until(ExpectedConditions.invisibilityOfAllElements(getListElement(driver, locator)));
     }
 
     public WebElement waitElementPresence(WebDriver driver, String locator) {
@@ -322,24 +325,11 @@ public class BasePage {
         return new WebDriverWait(driver, Duration.ofSeconds(LONG_TIMEOUT)).until(ExpectedConditions.presenceOfAllElementsLocatedBy(getByXPath(locator)));
     }
 
-    public boolean isLoadingSpinnerDisappear(WebDriver driver){
+    public boolean isLoadingSpinnerDisappear(WebDriver driver) {
         return waitListElementInvisible(driver, BasePageUI.SPINNER_ICON);
     }
 
+
     private final int SHORT_TIMEOUT = 15;
     private final int LONG_TIMEOUT = 30;
-
-
-
-    //Viết 1 hàm gettext của 1 element bất kì
-    private void sleepInSecond(){
-
-    }
-    public WebElement getWebElement(String locator){
-        return driver.findElement(By.cssSelector(locator));
-    }
-
-    protected void clickToElement(){
-        driver.findElement(By.cssSelector("")).click();
-    }
 }

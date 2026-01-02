@@ -13,8 +13,8 @@ import static core.BrowserList.*;
 public class BaseTest {
     private WebDriver driver;
     protected WebDriver getBrowserDriver(String browserName, String appUrl){
-        BrowserList browserList = BrowserList.valueOf(browserName.toUpperCase());
-        switch (browserList){
+        BrowserList browser = BrowserList.valueOf(browserName.toUpperCase());
+        switch (browser){
             case FIREFOX:
                 driver =new FirefoxDriver();
                 break;
@@ -35,5 +35,10 @@ public class BaseTest {
         driver.manage().window().maximize();
 
         return driver;
+    }
+    protected void closeBrowser() {
+        if (!(null == driver)) {
+            driver.quit();
+        }
     }
 }

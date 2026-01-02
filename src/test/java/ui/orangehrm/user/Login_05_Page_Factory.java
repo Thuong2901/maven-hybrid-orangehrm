@@ -9,18 +9,18 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import pageObjects.*;
+import pageFactory.*;
 
 
-public class Login_04_Page_Object extends BaseTest {
+public class Login_05_Page_Factory extends BaseTest {
 
     @Parameters({"appUrl", "browser"})
     @BeforeClass
-    public void beforeClass(String browser, String appUrl) {
-        driver = getBrowserDriver(browser, appUrl);
+    public void beforeClass(String appURL, String browserName) {
+        driver = getBrowserDriver(appURL, browserName);
         loginPage = new LoginPageObject(driver);
-        adminUserName = "Admin";
-        adminPassword = "admin123";
+        adminUserName = "automationfc";
+        adminPassword = "Auto222$$$";
         employeeFirstName = "John";
         employeeLastName = "Terry";
     }
@@ -51,7 +51,7 @@ public class Login_04_Page_Object extends BaseTest {
         Assert.assertTrue(addEmployeePage.isLoadingSpinnerDisappear(driver));
 
         personalDetailPage = new PersonalDetailPageObject(driver);
-        Assert.assertTrue(personalDetailPage.isLoadingSpinnerDisappear(driver));
+        Assert.assertTrue(personalDetailPage.isLoadingSpinnerDisappear());
         personalDetailPage.sleepInSecond(2);
 
         Assert.assertEquals(personalDetailPage.getFirstNameTextboxValue(), employeeFirstName);
@@ -61,7 +61,7 @@ public class Login_04_Page_Object extends BaseTest {
 
     @AfterClass
     public void afterClass() {
-        //driver.quit();
+        closeBrowser();
     }
 
     private WebDriver driver;

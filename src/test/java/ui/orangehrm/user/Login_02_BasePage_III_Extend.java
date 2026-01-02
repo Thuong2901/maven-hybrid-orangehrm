@@ -31,8 +31,8 @@ public class Login_02_BasePage_III_Extend extends BasePage {
     public void Login_01_Empty(){
         openPageUrl(driver,appUrl);
 
-        sendKeyToElement(driver,"//input[@name='username']","");
-        sendKeyToElement(driver,"//input[@type='password']","");
+        sendkeyToElement(driver,"//input[@name='username']","");
+        sendkeyToElement(driver,"//input[@type='password']","");
         clickToElement(driver,"//button[contains(@class,'orangehrm-login-button')]");
 
         Assert.assertEquals(getElementText
@@ -45,8 +45,8 @@ public class Login_02_BasePage_III_Extend extends BasePage {
     public void Login_02_Invalid_Username(){
         openPageUrl(driver,appUrl);
 
-        sendKeyToElement(driver,"//input[@name='username']","1234");
-        sendKeyToElement(driver,"//input[@type='password']","admin123");
+        sendkeyToElement(driver,"//input[@name='username']","1234");
+        sendkeyToElement(driver,"//input[@type='password']","admin123");
         clickToElement(driver,"//button[contains(@class,'orangehrm-login-button')]");
 
         Assert.assertEquals(getElementText
@@ -58,8 +58,8 @@ public class Login_02_BasePage_III_Extend extends BasePage {
     public void Login_03_Invalid_Password(){
         openPageUrl(driver,appUrl);
 
-        sendKeyToElement(driver,"//input[@name='username']","Admin");
-        sendKeyToElement(driver,"//input[@type='password']","admin1234");
+        sendkeyToElement(driver,"//input[@name='username']","Admin");
+        sendkeyToElement(driver,"//input[@type='password']","admin1234");
         clickToElement(driver,"//button[contains(@class,'orangehrm-login-button')]");
 
         Assert.assertEquals(driver.findElement(By.cssSelector
@@ -71,8 +71,8 @@ public class Login_02_BasePage_III_Extend extends BasePage {
     public void Login_04_Valid_Username_Password(){
         openPageUrl(driver,appUrl);
 
-        sendKeyToElement(driver,"//input[@name='username']","Admin");
-        sendKeyToElement(driver,"//input[@type='password']","admin123");
+        sendkeyToElement(driver,"//input[@name='username']","Admin");
+        sendkeyToElement(driver,"//input[@type='password']","admin123");
         clickToElement(driver,"//button[contains(@class,'orangehrm-login-button')]");
 
         Assert.assertTrue(isAllLoadingSprinnerInvisible());

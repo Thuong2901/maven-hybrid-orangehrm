@@ -2,16 +2,19 @@ package pageObjects;
 
 import core.BasePage;
 import org.openqa.selenium.WebDriver;
-import pageUIs.EmployeeListUI;
+import pageFactory.AddEmployeePageObject;
+import pageUIs.EmployeeListPageUI;
 
 public class EmployeeListPageObject extends BasePage {
     private WebDriver driver;
-    public void clickToAddEmployeeButton(WebDriver driver) {
+
+    public EmployeeListPageObject(WebDriver driver) {
         this.driver = driver;
     }
-    public void cliclToAddEmployeeButton(){
-        waitElementClickable(driver, EmployeeListUI.ADD_EMPLOYEE_BUTTON);
-        clickToElement(driver,EmployeeListUI.ADD_EMPLOYEE_BUTTON);
 
+    public AddEmployeePageObject clickToAddEmployeeButton() {
+        waitElementClickable(driver, EmployeeListPageUI.ADD_EMPLOYEE_BUTTON);
+        clickToElement(driver,EmployeeListPageUI.ADD_EMPLOYEE_BUTTON);
+        return PageGeneratorGeneric.getPage(AddEmployeePageObject.class,driver);
     }
 }
