@@ -7,6 +7,7 @@ import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.time.Duration;
+import java.util.Random;
 
 import static core.BrowserList.*;
 
@@ -40,5 +41,13 @@ public class BaseTest {
         if (!(null == driver)) {
             driver.quit();
         }
+    }
+    protected void closeBrowser(WebDriver driver) {
+        if (!(null == driver)) {
+            driver.quit();
+        }
+    }
+    protected int getRandomNumber(){
+        return new Random().nextInt(99999);
     }
 }
