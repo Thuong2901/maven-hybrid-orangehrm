@@ -163,6 +163,10 @@ public class BasePage {
         return driver.findElement(getByLocator(locator));
     }
 
+    private WebElement getWebElement(WebDriver driver,String locator ,String... restValue) {
+        return driver.findElement(getByLocator(castParameter(locator,restValue)));
+    }
+
     private List<WebElement> getListElement(WebDriver driver, String locator) {
         return driver.findElements(getByLocator(locator));
     }
@@ -267,6 +271,10 @@ public class BasePage {
 
     public int getListElementNumber(WebDriver driver, String locator) {
         return getListElement(driver, locator).size();
+    }
+
+    public int getListElementNumber(WebDriver driver, String locator,String...restValue) {
+        return getListElement(driver, castParameter(locator,restValue)).size();
     }
 
     public void checkToCheckbox(WebDriver driver, String locator) {
@@ -403,6 +411,10 @@ public class BasePage {
         return new WebDriverWait(driver, Duration.ofSeconds(LONG_TIMEOUT)).until(ExpectedConditions.elementToBeClickable(getByLocator(locator)));
     }
 
+    public WebElement waitElementClickable(WebDriver driver, String element) {
+        return new WebDriverWait(driver, Duration.ofSeconds(LONG_TIMEOUT)).until(ExpectedConditions.elementToBeClickable(element));
+    }
+
     public WebElement waitElementClickable(WebDriver driver, String locator,String...restValue) {
         return new WebDriverWait(driver, Duration.ofSeconds(LONG_TIMEOUT)).until(ExpectedConditions.elementToBeClickable(getByLocator(castParameter(locator,restValue))));
     }
@@ -446,6 +458,17 @@ public class BasePage {
         return driver.getWindowHandle();
     }
 
+    public void uploadMultipleFiles(WebDriver driver, String... fileNames) {
+        String filePath = GlobalContans.UPLOAD_PATH;
+        String fullFileName = "";
+
+        for (String file : fileNames) {
+            fullFileName = fullFileName + filePath + file + "\n";
+        }
+
+        getWebElement(driver, BasePageUI.UPLOAD_FILE_TYPE).sendKeys(fullFileName.trim());
+    }
+
 //orangeHRM
     public boolean isLoadingSpinnerDisappear(WebDriver driver) {
         return waitListElementInvisible(driver, BasePageUI.SPINNER_ICON);
@@ -486,6 +509,7 @@ public class BasePage {
     private String castParameter(String locator, String...values){
         return String.format(locator,(Object[]) values);
     }
+
 
     private final int SHORT_TIMEOUT = 15;
     private final int LONG_TIMEOUT = 30;
