@@ -2,7 +2,7 @@ package core;
 import java.io.File;
 
 
-public class GlobalContains {
+public class GlobalConstants {
     //System info
     public static final String PROJECT_PATH = System.getProperty("user.dir");
     public static final String OS_NAME = System.getProperty("os.name");
@@ -40,4 +40,7 @@ public class GlobalContains {
     public static final String DATA_TEST_PATH = PROJECT_PATH + File.separator + "dataTest" + File.separator;
     public static final String ENVIRONMENT_CONFIG_PATH = PROJECT_PATH + File.separator + "environmentConfig" + File.separator;
 
+    public static final long LONG_TIMEOUT = 2;
+    public static final String JAVA_VERSION = "";
+    public static final String RELATIVE_PROJECT_PATH = "";
 }
