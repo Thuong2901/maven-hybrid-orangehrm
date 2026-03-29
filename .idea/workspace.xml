@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="98c02963-3766-4f8b-8aaf-befc9dcda832" name="Changes" comment="Cookie + Close browser">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="AnnotationType" />
+        <option value="Record" />
+        <option value="Enum" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Thuong2901&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Thuong2901/maven-hybrid-orangehrm.git&quot;,
+    &quot;accountId&quot;: &quot;3e88d0a6-a666-44ea-b874-024b9dd573d6&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="34aNo9DbA4LdBjzf1HfJt1mCmwM" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Maven.maven-hybrid-orangehrm [clean,install].executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "TestNG.F:/Framework/Maven/maven-hybrid-orangehrm/src/test/resources/opencart.xml.executor": "Run",
+    "TestNG.F:/Framework/Maven/maven-hybrid-orangehrm/src/test/resources/orangehrm.xml.executor": "Run",
+    "TestNG.F:/Framework/Maven/maven-hybrid-orangehrm/src/test/resources/techpanda.xml.executor": "Run",
+    "TestNG.Level_17_Jira.executor": "Run",
+    "TestNG.Login_01.Login_01_Empty.executor": "Run",
+    "TestNG.Login_01.Login_02_Invalid_Username.executor": "Run",
+    "TestNG.Login_01.executor": "Run",
+    "TestNG.Login_04_Page_Object.executor": "Run",
+    "TestNG.Login_05_Page_Factory.executor": "Run",
+    "git-widget-placeholder": "feature/login",
+    "last_opened_file_path": "F:/Framework/Maven/maven-hybrid-orangehrm/src/test/resources",
+    "onboarding.tips.debug.path": "F:/Framework/Maven/maven-hybrid-orangehrm/src/main/java/org/framwork/Main.java",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.general"
+  },
+  "keyToStringList": {
+    "ChangesTree.GroupingKeys": [
+      "directory",
+      "module",
+      "repository"
+    ]
+  }
+}]]></component>
+  <component name="Push.Settings">
+    <option name="SHOW_DETAILS_PANEL" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="core" />
+      <recent name="javaSDET" />
+      <recent name="pageObjects.openCart.user" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\Framework\Maven\maven-hybrid-orangehrm\src\test\resources" />
+      <recent name="F:\Framework\Maven\maven-hybrid-orangehrm" />
+      <recent name="F:\Framework\Maven\maven-hybrid-orangehrm\uploadFiles" />
+      <recent name="F:\Framework\Maven\maven-hybrid-orangehrm\src\main\java\pageFactory" />
+      <recent name="F:\Framework\Maven\maven-hybrid-orangehrm\src\main\java" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\Framework\Maven\maven-hybrid-orangehrm\src\test\java" />
+      <recent name="F:\Framework\Maven\maven-hybrid-orangehrm\src\test\com" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.orangeHRM" />
+      <recent name="pageUIs.techpanda" />
+      <recent name="pageObjects.techpanda" />
+      <recent name="com.techpanda.share" />
+      <recent name="com.techpanda" />
+    </key>
+  </component>
+  <component name="RunManager" selected="TestNG.F:/Framework/Maven/maven-hybrid-orangehrm/src/test/resources/techpanda.xml">
+    <configuration name="F:/Framework/Maven/maven-hybrid-orangehrm/src/test/resources/opencart.xml" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="maven-hybrid-orangehrm" />
+      <option name="SUITE_NAME" value="$PROJECT_DIR$/src/test/resources/opencart.xml" />
+      <option name="TEST_OBJECT" value="SUITE" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="F:/Framework/Maven/maven-hybrid-orangehrm/src/test/resources/orangehrm.xml" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="maven-hybrid-orangehrm" />
+      <option name="SUITE_NAME" value="$PROJECT_DIR$/src/test/resources/orangehrm.xml" />
+      <option name="TEST_OBJECT" value="SUITE" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="F:/Framework/Maven/maven-hybrid-orangehrm/src/test/resources/techpanda.xml" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="maven-hybrid-orangehrm" />
+      <option name="SUITE_NAME" value="$PROJECT_DIR$/src/test/resources/techpanda.xml" />
+      <option name="TEST_OBJECT" value="SUITE" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Level_05_Page_Factory" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="maven-hybrid-orangehrm" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ui.orangehrm.user.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ui.orangehrm.user" />
+      <option name="MAIN_CLASS_NAME" value="ui.orangehrm.user.Level_05_Page_Factory" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Level_17_Jira" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="maven-hybrid-orangehrm" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.orangeHRM.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.orangeHRM" />
+      <option name="MAIN_CLASS_NAME" value="com.orangeHRM.Level_17_Jira" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="TestNG.F:/Framework/Maven/maven-hybrid-orangehrm/src/test/resources/techpanda.xml" />
+        <item itemvalue="TestNG.Level_17_Jira" />
+        <item itemvalue="TestNG.F:/Framework/Maven/maven-hybrid-orangehrm/src/test/resources/orangehrm.xml" />
+        <item itemvalue="TestNG.F:/Framework/Maven/maven-hybrid-orangehrm/src/test/resources/opencart.xml" />
+        <item itemvalue="TestNG.Level_05_Page_Factory" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="98c02963-3766-4f8b-8aaf-befc9dcda832" name="Changes" comment="" />
+      <created>1761447896108</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1761447896108</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Framework">
+      <option name="closed" value="true" />
+      <created>1762173695305</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1762173695305</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Framework">
+      <option name="closed" value="true" />
+      <created>1762173722385</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1762173722385</updated>
+    </task>
+    <task id="LOCAL-00003" summary="BasePage">
+      <option name="closed" value="true" />
+      <created>1763365765486</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1763365765486</updated>
+    </task>
+    <task id="LOCAL-00004" summary="multiple">
+      <option name="closed" value="true" />
+      <created>1764593906696</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1764593906696</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Page Object">
+      <option name="closed" value="true" />
+      <created>1765600560808</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1765600560808</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Page Generator Manager">
+      <option name="closed" value="true" />
+      <created>1767343231117</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1767343231117</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Switch Page + Multiple browser">
+      <option name="closed" value="true" />
+      <created>1768636255164</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1768636255164</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Dynamic locator + Data Table">
+      <option name="closed" value="true" />
+      <created>1769849567656</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1769849567656</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Upload File">
+      <option name="closed" value="true" />
+      <created>1772351199960</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1772351199960</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Alert+ report">
+      <option name="closed" value="true" />
+      <created>1773664623476</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1773664623477</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Cookie + Close browser">
+      <option name="closed" value="true" />
+      <created>1774688217528</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1774688217528</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Framework" />
+    <MESSAGE value="BasePage" />
+    <MESSAGE value="multiple" />
+    <MESSAGE value="Page Object" />
+    <MESSAGE value="Page Generator Manager" />
+    <MESSAGE value="Switch Page + Multiple browser" />
+    <MESSAGE value="Dynamic locator + Data Table" />
+    <MESSAGE value="Upload File" />
+    <MESSAGE value="Alert+ report" />
+    <MESSAGE value="Cookie + Close browser" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cookie + Close browser" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/framwork/Main.java</url>
+          <line>13</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/core/BaseTest.java</url>
+          <line>79</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
