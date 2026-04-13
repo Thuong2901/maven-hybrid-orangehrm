@@ -155,6 +155,20 @@ public class BaseTest {
         return pass;
     }
 
+    protected boolean verifyNotEquals(Object actual, Object expected) {
+        boolean pass = true;
+        try {
+            Assert.assertNotEquals(actual, expected);
+            log.info("-----------PASSED----------");
+        } catch (Throwable e) {
+            pass = false;
+            VerificationFailures.getFailures().addFailureForTest(Reporter.getCurrentTestResult(), e);
+            Reporter.getCurrentTestResult().setThrowable(e);
+            log.info("-----------FAILED----------");
+        }
+        return pass;
+    }
+
 
     public WebDriver getDriver() {
         return this.driver;

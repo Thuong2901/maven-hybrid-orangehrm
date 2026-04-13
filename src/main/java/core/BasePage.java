@@ -14,6 +14,7 @@ import pageObjects.orangeHRM.LoginPageObject;
 import pageUIs.BasePageUI;
 import software.amazon.awssdk.services.s3.endpoints.internal.Value;
 
+import java.security.Key;
 import java.time.Duration;
 import java.util.Date;
 import java.util.List;
@@ -79,6 +80,14 @@ public class BasePage {
     public void sleepInSecond(int timeInSecond) {
         try {
             Thread.sleep(timeInSecond * 1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void sleepInMilisecond(int timeInMilisecond) {
+        try {
+            Thread.sleep(timeInMilisecond);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -184,10 +193,14 @@ public class BasePage {
         getWebElement(driver, castParameter(locator,restValue)).click();
     }
     public void sendkeyToElement(WebDriver driver, String locator, String keyToSend,String...restValue) {
+        getWebElement(driver,castParameter(locator,restValue)).sendKeys(Keys.chord(Keys.CONTROL,"a"));
+        getWebElement(driver,castParameter(locator,restValue)).sendKeys(Keys.chord(Keys.DELETE));
+        sleepInMilisecond(500);
         getWebElement(driver, castParameter(locator,restValue)).sendKeys(keyToSend);
     }
 
     public void sendkeyToElement(WebDriver driver, String locator, String keyToSend) {
+        getWebElement(driver,locator).clear();
         getWebElement(driver, locator).sendKeys(keyToSend);
     }
 
@@ -298,6 +311,14 @@ public class BasePage {
         if (isElementSelected(driver, locator)) {
             getWebElement(driver, locator).click();
         }
+    }
+
+    public Dimension getElementSize(WebDriver driver, String locator){
+        return getWebElement(driver, locator).getSize();
+    }
+
+    public Dimension getElementSize(WebDriver driver, String locator,String... restValue){
+        return getWebElement(driver, locator,restValue).getSize();
     }
 
     public boolean isElementDisplayed(WebDriver driver, String locator) {
@@ -535,6 +556,7 @@ public class BasePage {
         }
 
         getWebElement(driver, BasePageUI.UPLOAD_FILE_TYPE).sendKeys(fullFileName.trim());
+        sleepInSecond(1000);
     }
 
 
@@ -589,6 +611,14 @@ public class BasePage {
         sendkeyToElement(driver,BasePageUI.TEXTBOX_BY_LABEL,textboxLabel,valueToSendKey);
 
     }
+
+    public void clearToTextboxByLabel(WebDriver driver, String textboxLabel){
+        waitElementVisible(driver,BasePageUI.TEXTBOX_BY_LABEL,textboxLabel);
+        sendkeyToElement(driver,BasePageUI.TEXTBOX_BY_LABEL, Keys.chord(Keys.CONTROL,"a"),textboxLabel);
+        sendkeyToElement(driver,BasePageUI.TEXTBOX_BY_LABEL, Keys.DELETE,textboxLabel);
+
+    }
+
     @Step("Enter to {0} textbox by name with value {1}")
     public void enterToTextboxByName(WebDriver driver, String textboxNameAttribute, String valueToSendKey){
         waitElementVisible(driver,BasePageUI.TEXTBOX_BY_NAME,textboxNameAttribute);
