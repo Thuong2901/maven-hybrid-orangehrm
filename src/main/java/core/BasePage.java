@@ -12,6 +12,7 @@ import pageObjects.openCart.admin.AdminLoginPO;
 import pageObjects.openCart.user.UserHomePO;
 import pageObjects.orangeHRM.LoginPageObject;
 import pageUIs.BasePageUI;
+import pageUIs.orangeHRM.editNavigation.EmegencyDetailPageUI;
 import software.amazon.awssdk.services.s3.endpoints.internal.Value;
 
 import java.security.Key;
@@ -700,5 +701,25 @@ public class BasePage {
     private int LONG_TIMEOUT = GlobalConstants.LONG_TIME;
 
 
+    public void clickToMenuMyInfo(WebDriver driver, String MenuName){
+        waitElementClickable(driver,BasePageUI.MENU_MY_INFO,MenuName);
+        clickToElement(driver,BasePageUI.MENU_MY_INFO,MenuName);
+    }
 
+    public void clickToAddButton(WebDriver driver, String name){
+        waitElementClickable(driver,BasePageUI.ADD_BUTTON_BY_TEXT,name);
+        clickToElement(driver,BasePageUI.ADD_BUTTON_BY_TEXT,name);
+    }
+
+
+    public String getErrorMessageAttachFile(WebDriver driver,String errorMessage) {
+        waitElementVisible(driver, BasePageUI.ATTACH_FILE_UPLOAD_ERROR_MESSAGE,errorMessage);
+        return getElementDOMProperty(driver,BasePageUI.ATTACH_FILE_UPLOAD_ERROR_MESSAGE,"value",errorMessage);
+    }
+
+
+    public void clickToMenuHeader(WebDriver driver, String menuName) {
+        waitElementClickable(driver, BasePageUI.MENU_HEADER, menuName);
+        clickToElement(driver, BasePageUI.MENU_HEADER, menuName);
+    }
 }

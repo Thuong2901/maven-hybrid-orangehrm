@@ -6,11 +6,14 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxDriverService;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.firefox.GeckoDriverService;
 import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.BeforeSuite;
@@ -18,6 +21,7 @@ import reportConfig.ExtentManager;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.time.Duration;
 import java.util.Random;
 import java.util.ArrayList;
@@ -29,20 +33,23 @@ import static core.BrowserList.*;
 
 public class BaseTest {
     private WebDriver driver;
-    protected final Log log;
 
-    public BaseTest(Log log){
-        this.log=log;
-    }
 
-    protected WebDriver getBrowserDriver(String browserName, String appUrl){
+    protected WebDriver getBrowserDriver( String appUrl,String browserName){
         BrowserList browser = BrowserList.valueOf(browserName.toUpperCase());
+
+        Path path=  null;
+        File extensionFilePath= null;
         switch (browser){
             case FIREFOX:
-                driver =new FirefoxDriver();
+                FirefoxDriverService fService= new GeckoDriverService.Builder().withLogOutput(System.out).
+                        withLogFile(new File (GlobalConstants.BROWSER_LOG_PATH+ "FireFoxLog.log")).build();
+                driver =new FirefoxDriver(fService);
                 break;
             case CHROME:
-                driver = new ChromeDriver();
+                ChromeDriverService cService= new ChromeDriverService.Builder().withLogOutput(System.out).
+                        withLogFile(new File (GlobalConstants.BROWSER_LOG_PATH+ "ChromeLog.log")).build();
+                driver = new ChromeDriver(cService);
                 break;
             case EDGE:
 
@@ -71,55 +78,19 @@ public class BaseTest {
         }
 
         driver.get(appUrl);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT));
-        log.info("============INIT BROWSER & DRIVER =============");
-
         return driver;
     }
+
     protected void closeBrowser() {
-        String cmd = null;
-        try {
-            String osName = GlobalConstants.OS_NAME.toLowerCase();
-            log.info("OS name = " + osName);
-
-            String driverInstanceName = driver.toString().toLowerCase();
-            log.info("Driver instance name = " + driverInstanceName);
-
-            String browserDriverName = null;
-
-            if (driverInstanceName.contains("chrome")) {
-                browserDriverName = "chromedriver";
-            } else if (driverInstanceName.contains("firefox")) {
-                browserDriverName = "geckodriver";
-            } else if (driverInstanceName.contains("edge")) {
-                browserDriverName = "msedgedriver";
-            } else {
-                throw new RuntimeException("Driver instance is not support.");
-            }
-
-            if (osName.contains("window")) {
-                cmd = "taskkill /F /FI \"IMAGENAME eq " + browserDriverName + "*\"";
-            } else {
-                cmd = "pkill " + browserDriverName;
-            }
-
-            if (driver != null) {
-                driver.manage().deleteAllCookies();
-                driver.quit();
-            }
-        } catch (Exception e) {
-            log.info(e.getMessage());
-        } finally {
-            try {
-                Process process = Runtime.getRuntime().exec(cmd);
-                process.waitFor();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+        if (driver != null) {
+            driver.quit();
+        }
+    }
+    protected void closeBrowser(WebDriver driver) {
+        if (!(null == driver)) {
+            driver.quit();
         }
     }
 

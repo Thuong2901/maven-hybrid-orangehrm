@@ -15,7 +15,7 @@ import pageFactory.orangeHRM.DashboardPageObject;
 import pageObjects.PageGenerator;
 import pageObjects.orangeHRM.EmployeeListPageObject;
 import pageObjects.orangeHRM.LoginPageObject;
-import pageObjects.orangeHRM.editNavigation.PersonalDetailPageObject;
+import pageObjects.orangeHRM.editNavigation.*;
 
 
 public class Level_22_LiveCode extends BaseTest {
@@ -37,6 +37,27 @@ public class Level_22_LiveCode extends BaseTest {
         employeeID = String.valueOf(getRandomNumber());
         employeeUsername =employeeFirstName + getRandomNumber();
         employeePassword ="Automation12@";
+
+        street ="HN";
+        city="HN";
+        state ="Nguyen Du";
+        zip="88765677";
+        country="Algeria";
+        mobile="0876544556";
+        email ="Peter" + getRandomNumber() + "@gmail.com";
+        telephone ="0999889900";
+        relationship ="";
+        company="SSI";
+        job="IT";
+        from = "2025-01-11";
+        to="2026-01-11";
+        level ="College Undergraduate";
+        year="2026";
+        institute="";
+        fluecy="Writing";
+        language="French";
+        compatency="Poor";
+        employeeStatus="Full-Time Contract";
 
         loginPage.enterToTextboxByLabel(driver,"Username",adminUserName);
         loginPage.enterToTextboxByLabel(driver,"Password",adminPassword);
@@ -148,51 +169,264 @@ public class Level_22_LiveCode extends BaseTest {
 
     @Test
     public void Employee_03_EditPersonalDetail() {
+        dashboardPage.clickToModuleByTextInMenuItem(driver,"PIM");
+        employeeListPage = PageGenerator.getPage(EmployeeListPageObject.class,driver);
+        verifyTrue(employeeListPage.isLoadingSpinnerDisappear(driver));
+
+
+        employeeListPage.clickToEditButton();
+        personalDetailPage = PageGenerator.getPage(PersonalDetailPageObject.class,driver);
+        verifyTrue(addEmployeePage.isLoadingSpinnerDisappear(driver));
+
+        verifyEquals(personalDetailPage.getTextboxValueByName(driver,"lastName"), employeeLastName);
+        verifyEquals(personalDetailPage.getTextboxValueByName(driver,"firstName"), employeeFirstName );
+        verifyEquals(personalDetailPage.getTextboxValueByLabel(driver,"Employee Id"), employeeID);
+
+        personalDetailPage.enterToTextboxByName(driver,"firstName",employeeFirstName);
+        personalDetailPage.enterToTextboxByName(driver,"lastName",employeeLastName);
+
+        personalDetailPage.clickToButtonByText(driver,"Save");
+        personalDetailPage = PageGenerator.getPage(PersonalDetailPageObject.class,driver);
+
+        verifyTrue(personalDetailPage.isToastMessageDisplay(driver,"Successfully Updated"));
+
+        verifyTrue(personalDetailPage.isLoadingSpinnerDisappear(driver));
+        personalDetailPage.sleepInSecond(10);
+
+        verifyEquals(personalDetailPage.getTextboxValueByLabel(driver, "Employee Id"), employeeID);
+
 
     }
 
     @Test
     public void Employee_04_ContactDetail() {
+        personalDetailPage.clickToMenuMyInfo(driver, "Contact Details");
+        contacDetailsPage = PageGenerator.getPage(ContactDetailPageObject.class,driver);
+        verifyTrue(employeeListPage.isLoadingSpinnerDisappear(driver));
+
+        contacDetailsPage.enterToTextboxByLabel(driver,"Street 1",street);
+        contacDetailsPage.enterToTextboxByLabel(driver,"Street 2",street);
+        contacDetailsPage.enterToTextboxByLabel(driver,"City",city);
+        contacDetailsPage.enterToTextboxByLabel(driver,"State/Province",state);
+        contacDetailsPage.enterToTextboxByLabel(driver,"Zip/Postal Code",zip);
+        contacDetailsPage.selectDropdownByLabel(driver,"Country",country);
+        contacDetailsPage.enterToTextboxByLabel(driver,"Mobile",mobile);
+        contacDetailsPage.enterToTextboxByLabel(driver,"Work Email",email);
+
+        contacDetailsPage.clickToButtonByText(driver, "Save");
+        contacDetailsPage = PageGenerator.getPage(ContactDetailPageObject.class, driver);
+
+        verifyTrue(contacDetailsPage.isToastMessageDisplay(driver, "Successfully Updated"));
+
+        verifyTrue(contacDetailsPage.isLoadingSpinnerDisappear(driver));
+        contacDetailsPage.sleepInSecond(5);
+
+        verifyEquals(contacDetailsPage.getTextboxValueByLabel(driver, "Street 1"), street);
+        verifyEquals(contacDetailsPage.getTextboxValueByLabel(driver, "Street 2"), street);
+        verifyEquals(contacDetailsPage.getTextboxValueByLabel(driver, "City"), city);
+        verifyEquals(contacDetailsPage.getTextboxValueByLabel(driver, "State/Province"), state);
+        verifyEquals(contacDetailsPage.getTextboxValueByLabel(driver, "Zip/Postal Code"), zip);
+        verifyEquals(contacDetailsPage.getTextboxValueByLabel(driver, "Country"), country);
+        verifyEquals(contacDetailsPage.getTextboxValueByLabel(driver, "Mobile"), mobile);
+        verifyEquals(contacDetailsPage.getTextboxValueByLabel(driver, "Work Email"), email);
 
     }
 
     @Test
     public void Employee_05_EmergencyDetail() {
+        contacDetailsPage.clickToMenuMyInfo(driver, "Emergency Contacts");
+        emergencyDetailPage = PageGenerator.getPage(EmergencyDetailPageObject.class,driver);
+        verifyTrue(employeeListPage.isLoadingSpinnerDisappear(driver));
 
+        emergencyDetailPage.clickToAddButton(driver,"Assigned Emergency Contacts");
+        emergencyDetailPage = PageGenerator.getPage(EmergencyDetailPageObject.class,driver);
+        verifyTrue(addEmployeePage.isLoadingSpinnerDisappear(driver));
+
+        emergencyDetailPage.enterToTextboxByLabel(driver,"Name",name);
+        emergencyDetailPage.enterToTextboxByLabel(driver,"Relationship",relationship);
+        emergencyDetailPage.enterToTextboxByLabel(driver,"Home Telephone",telephone);
+        emergencyDetailPage.enterToTextboxByLabel(driver,"Mobile",mobile);
+
+        emergencyDetailPage.clickToButtonByText(driver, "Save");
+        emergencyDetailPage = PageGenerator.getPage(EmergencyDetailPageObject.class, driver);
+
+        verifyTrue(contacDetailsPage.isToastMessageDisplay(driver, "Successfully Saved"));
+        verifyTrue(contacDetailsPage.isLoadingSpinnerDisappear(driver));
+
+
+        verifyEquals(personalDetailPage.getTextboxValueByLabel(driver,"Name"),name);
+        verifyEquals(personalDetailPage.getTextboxValueByLabel(driver,"Relationship"),relationship);
+        verifyEquals(personalDetailPage.getTextboxValueByLabel(driver,"Home Telephone"),telephone);
+
+        //Attach file
+        emergencyDetailPage.clickToAddButton(driver,"Attachments");
+
+        emergencyDetailPage.uploadMultipleFiles(driver,"Dimension.jpg");
+        verifyEquals(emergencyDetailPage.getErrorMessageAttachFile(driver,""),"File type not allowed");
+
+        emergencyDetailPage.uploadMultipleFiles(driver,"file1.xlxs");
+
+        emergencyDetailPage.clickToButtonByText(driver,"Save");
+
+        verifyTrue(emergencyDetailPage.isToastMessageDisplay(driver,"Successfully Saved"));
+
+        verifyTrue(emergencyDetailPage.isLoadingSpinnerDisappear(driver));
+        emergencyDetailPage.sleepInSecond(10);
+
+        //hỏi thêm thầy về phần verify dữ liệu trước và sau cho attach file
     }
 
     @Test
     public void Employee_06_Dependents() {
 
+        emergencyDetailPage.clickToMenuMyInfo(driver, "Emergency Contacts");
+        dependentsPage = PageGenerator.getPage(DependentsPageObject.class,driver);
+        verifyTrue(employeeListPage.isLoadingSpinnerDisappear(driver));
+
+        dependentsPage.clickToAddButton(driver,"Assigned Dependents");
+        dependentsPage = PageGenerator.getPage(DependentsPageObject.class,driver);
+        verifyTrue(addEmployeePage.isLoadingSpinnerDisappear(driver));
+
+        dependentsPage.enterToTextboxByLabel(driver,"Name",name);
+        dependentsPage.selectDropdownByLabel(driver,"Child",relationship);
+
+        dependentsPage.clickToButtonByText(driver, "Save");
+        dependentsPage = PageGenerator.getPage(DependentsPageObject.class, driver);
+
+        verifyTrue(dependentsPage.isToastMessageDisplay(driver, "Successfully Saved"));
+        verifyTrue(dependentsPage.isLoadingSpinnerDisappear(driver));
+
+
+        verifyEquals(dependentsPage.getTextboxValueByLabel(driver,"Name"),name);
+        verifyEquals(dependentsPage.getTextboxValueByLabel(driver,"Relationship"),relationship);
+        verifyEquals(dependentsPage.getTextboxValueByLabel(driver,"Home Telephone"),telephone);
+
+        //Attach file
+        dependentsPage.clickToAddButton(driver,"Attachments");
+
+        dependentsPage.uploadMultipleFiles(driver,"Dimension.jpg");
+        verifyEquals(dependentsPage.getErrorMessageAttachFile(driver,"File type not allowed"),"File type not allowed");
+
+        dependentsPage.uploadMultipleFiles(driver,"file1.xlxs");
+
+        dependentsPage.clickToButtonByText(driver,"Save");
+
+        verifyTrue(dependentsPage.isToastMessageDisplay(driver,"Successfully Saved"));
+
+        verifyTrue(dependentsPage.isLoadingSpinnerDisappear(driver));
+        dependentsPage.sleepInSecond(10);
+
+        //tương tự tcs 5
+
     }
 
     @Test
     public void Employee_07_Jobs() {
-
+      //trên trang HRM disable k cho thao tác
     }
 
     @Test
     public void Employee_08_Salary() {
+        //trên trang HRM disable k cho thao tác
 
     }
 
     @Test
     public void Employee_09_Tax() {
+      //k tìm thấy menu tax
+    }
+
+
+    @Test
+    public void Employee_10_Qualification() {
+        dependentsPage.clickToMenuMyInfo(driver, "Qualifications");
+        qualificationPage = PageGenerator.getPage(QualificationPageObject.class,driver);
+        verifyTrue(employeeListPage.isLoadingSpinnerDisappear(driver));
+
+        qualificationPage.clickToAddButton(driver,"Work Experience");
+        qualificationPage = PageGenerator.getPage(QualificationPageObject.class,driver);
+        verifyTrue(addEmployeePage.isLoadingSpinnerDisappear(driver));
+
+        qualificationPage.enterToTextboxByLabel(driver,"Company",company);
+        qualificationPage.enterToTextboxByLabel(driver,"Job Title",job);
+        qualificationPage.enterToTextboxByLabel(driver,"From",from);
+        qualificationPage.enterToTextboxByLabel(driver,"To",to);
+
+        qualificationPage.clickToButtonByText(driver, "Save");
+        qualificationPage = PageGenerator.getPage(QualificationPageObject.class, driver);
+
+        verifyTrue(qualificationPage.isToastMessageDisplay(driver, "Successfully Saved"));
+        verifyTrue(qualificationPage.isLoadingSpinnerDisappear(driver));
+
+
+        verifyEquals(qualificationPage.getTextboxValueByLabel(driver,"Company"),company);
+        verifyEquals(qualificationPage.getTextboxValueByLabel(driver,"Job Title"),job);
+        verifyEquals(qualificationPage.getTextboxValueByLabel(driver,"From"),from);
+        verifyEquals(qualificationPage.getTextboxValueByLabel(driver,"From"),to);
+
+
+        qualificationPage.clickToAddButton(driver,"Languages");
+        qualificationPage = PageGenerator.getPage(QualificationPageObject.class,driver);
+        verifyTrue(addEmployeePage.isLoadingSpinnerDisappear(driver));
+
+        qualificationPage.selectDropdownByLabel(driver,"Language",language);
+        qualificationPage.selectDropdownByLabel(driver,"Fluency",fluecy);
+        qualificationPage.selectDropdownByLabel(driver,"Competency",compatency);
+
+        qualificationPage.clickToButtonByText(driver, "Save");
+        qualificationPage = PageGenerator.getPage(QualificationPageObject.class, driver);
+
+        verifyTrue(qualificationPage.isToastMessageDisplay(driver, "Successfully Saved"));
+        verifyTrue(qualificationPage.isLoadingSpinnerDisappear(driver));
+
+        verifyEquals(qualificationPage.getTextboxValueByLabel(driver,"Language"),language);
+        verifyEquals(qualificationPage.getTextboxValueByLabel(driver,"Fluency"),fluecy);
+        verifyEquals(qualificationPage.getTextboxValueByLabel(driver,"Competency"),compatency);
+
+
+        qualificationPage.clickToAddButton(driver,"Education");
+        qualificationPage = PageGenerator.getPage(QualificationPageObject.class,driver);
+        verifyTrue(addEmployeePage.isLoadingSpinnerDisappear(driver));
+
+        qualificationPage.selectDropdownByLabel(driver,"Level",level);
+        qualificationPage.enterToTextboxByLabel(driver,"Institute",job);
+        qualificationPage.enterToTextboxByLabel(driver,"Year",year);
+        qualificationPage.enterToTextboxByLabel(driver,"Start Date",from);
+        qualificationPage.enterToTextboxByLabel(driver,"End Date",to);
+
+        qualificationPage.clickToButtonByText(driver, "Save");
+        qualificationPage = PageGenerator.getPage(QualificationPageObject.class, driver);
+
+        verifyTrue(qualificationPage.isToastMessageDisplay(driver, "Successfully Saved"));
+        verifyTrue(qualificationPage.isLoadingSpinnerDisappear(driver));
+
+        verifyEquals(qualificationPage.getTextboxValueByLabel(driver,"Level"),level);
+        verifyEquals(qualificationPage.getTextboxValueByLabel(driver,"Year"),year);
+
+
 
     }
 
     @Test
-    public void Employee_10_Dependents() {
+    public void Employee_11_Search() {
+        qualificationPage.clickToMenuHeader(driver,"Employee List");
+        employeeInformationPage = PageGenerator.getPage(EmployeeInformationPageObject.class,driver);
+        verifyTrue(employeeInformationPage.isLoadingSpinnerDisappear(driver));
 
-    }
+        employeeInformationPage.enterToTextboxByLabel(driver,"Employee Name",employeeUsername);
+        employeeInformationPage.enterToTextboxByLabel(driver,"Employment Status",employeeStatus);
 
-    @Test
-    public void Employee_11_Qualification() {
+        employeeInformationPage.clickToButtonByText(driver, "Search");
+        employeeInformationPage = PageGenerator.getPage(EmployeeInformationPageObject.class, driver);
 
-    }
+        verifyTrue(employeeInformationPage.isToastMessageDisplay(driver, "No Records Found"));
+        verifyTrue(employeeInformationPage.isLoadingSpinnerDisappear(driver));
 
-    @Test
-    public void Employee_12_Search() {
+        employeeInformationPage.enterToTextboxByLabel(driver,"Employment Status",employeeStatus);
+        employeeInformationPage.clickToButtonByText(driver, "Search");
+        employeeInformationPage = PageGenerator.getPage(EmployeeInformationPageObject.class, driver);
+
+
 
     }
 
@@ -210,6 +444,14 @@ public class Level_22_LiveCode extends BaseTest {
     private EmployeeListPageObject employeeListPage;
     private AddEmployeePageObject addEmployeePage;
     private PersonalDetailPageObject personalDetailPage;
+    private ContactDetailPageObject contacDetailsPage;
+    private EmergencyDetailPageObject emergencyDetailPage;
+    private DependentsPageObject dependentsPage;
+    private QualificationPageObject qualificationPage;
+    private EmployeeInformationPageObject employeeInformationPage;
     private String employeeID, adminUserName, adminPassword, employeeFirstName, employeeLastName;
     private String employeeUsername,employeePassword;
+    private String street,city,state,zip,country,mobile,email;
+    private String name,relationship,telephone;
+    private String company,job,from,to,level,institute,year,fluecy,language,compatency,employeeStatus;
 }

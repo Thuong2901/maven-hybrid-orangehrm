@@ -16,7 +16,10 @@ public class BasePageUI {
     public static final String CHECKBOX_BUTTON_BY_LABEL ="XPath=//p[text()='%s']/following-sibling::div//span";
     public static final String USER_DROPDOWN ="Css= p.oxd-userdropdown-name";
     public static final String LOGIN_LINK ="XPath=//a[@class='oxd-userdropdown-link' and text()='Logout']";
-
+    public static final String MENU_MY_INFO = "XPath=//a[text()='%s']//parent::a[contains(@class,'orangehrm-tabs')]";
+    public static final String ADD_BUTTON_BY_TEXT ="Xpath=//h6[text()='%s']/following-sibling::button";
+    public static String ATTACH_FILE_UPLOAD_ERROR_MESSAGE ="Css=span.oxd-input-filed-error-message";
+    public static final String MENU_HEADER = "XPath=//a[text()='%s']";
 
 
 
@@ -29,4 +32,5 @@ public class BasePageUI {
 
     //JQuery
     public static final String UPLOAD_FILE_TYPE="css=input[type='file']";
+
 }
