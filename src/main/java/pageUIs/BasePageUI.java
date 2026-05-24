@@ -20,8 +20,7 @@ public class BasePageUI {
     public static final String ADD_BUTTON_BY_TEXT ="Xpath=//h6[text()='%s']/following-sibling::button";
     public static String ATTACH_FILE_UPLOAD_ERROR_MESSAGE ="Css=span.oxd-input-filed-error-message";
     public static final String MENU_HEADER = "XPath=//a[text()='%s']";
-
-
+    public static final String INFO_IN_THE_TABLE = "XPath=//div[text()='%s']/parent::div";
 
     //opencart
 

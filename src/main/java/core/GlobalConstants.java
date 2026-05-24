@@ -16,6 +16,8 @@ public class GlobalConstants {
     public static final String ADMIN_USERNAME = "automation";
     public static final String ADMIN_PASSWORD = "Auto123$$##";
 
+
+
     //wait info
     public static final int SHORT_TIME = 10;
     public static final int LONG_TIME = 30;

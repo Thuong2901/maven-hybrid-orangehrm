@@ -58,6 +58,18 @@ public class Level_22_LiveCode extends BaseTest {
         language="French";
         compatency="Poor";
         employeeStatus="Full-Time Contract";
+        fileName="file12.xlsx";
+        date="2026-05-23";
+        jobTile="Account Assistant";
+        jobCategory="Craft Workers";
+        subUnit="Administration";
+        location="HQ - CA, USA";
+        employmentStatus="Full-Time Contract";
+        salaryComponent="12222";
+        payGrade="Grade 2";
+        payFrequency="Hourly";
+        currency="United States Dollar";
+        amount="40000";
 
         loginPage.enterToTextboxByLabel(driver,"Username",adminUserName);
         loginPage.enterToTextboxByLabel(driver,"Password",adminPassword);
@@ -176,7 +188,7 @@ public class Level_22_LiveCode extends BaseTest {
 
         employeeListPage.clickToEditButton();
         personalDetailPage = PageGenerator.getPage(PersonalDetailPageObject.class,driver);
-        verifyTrue(addEmployeePage.isLoadingSpinnerDisappear(driver));
+        verifyTrue(personalDetailPage.isLoadingSpinnerDisappear(driver));
 
         verifyEquals(personalDetailPage.getTextboxValueByName(driver,"lastName"), employeeLastName);
         verifyEquals(personalDetailPage.getTextboxValueByName(driver,"firstName"), employeeFirstName );
@@ -202,7 +214,7 @@ public class Level_22_LiveCode extends BaseTest {
     public void Employee_04_ContactDetail() {
         personalDetailPage.clickToMenuMyInfo(driver, "Contact Details");
         contacDetailsPage = PageGenerator.getPage(ContactDetailPageObject.class,driver);
-        verifyTrue(employeeListPage.isLoadingSpinnerDisappear(driver));
+        verifyTrue(contacDetailsPage.isLoadingSpinnerDisappear(driver));
 
         contacDetailsPage.enterToTextboxByLabel(driver,"Street 1",street);
         contacDetailsPage.enterToTextboxByLabel(driver,"Street 2",street);
@@ -236,7 +248,7 @@ public class Level_22_LiveCode extends BaseTest {
     public void Employee_05_EmergencyDetail() {
         contacDetailsPage.clickToMenuMyInfo(driver, "Emergency Contacts");
         emergencyDetailPage = PageGenerator.getPage(EmergencyDetailPageObject.class,driver);
-        verifyTrue(employeeListPage.isLoadingSpinnerDisappear(driver));
+        verifyTrue(emergencyDetailPage.isLoadingSpinnerDisappear(driver));
 
         emergencyDetailPage.clickToAddButton(driver,"Assigned Emergency Contacts");
         emergencyDetailPage = PageGenerator.getPage(EmergencyDetailPageObject.class,driver);
@@ -273,7 +285,9 @@ public class Level_22_LiveCode extends BaseTest {
         verifyTrue(emergencyDetailPage.isLoadingSpinnerDisappear(driver));
         emergencyDetailPage.sleepInSecond(10);
 
-        //hỏi thêm thầy về phần verify dữ liệu trước và sau cho attach file
+        verifyEquals(emergencyDetailPage.getTextboxValueByLabel(driver,"file12.xlsx"),fileName);
+
+
     }
 
     @Test
@@ -281,7 +295,7 @@ public class Level_22_LiveCode extends BaseTest {
 
         emergencyDetailPage.clickToMenuMyInfo(driver, "Emergency Contacts");
         dependentsPage = PageGenerator.getPage(DependentsPageObject.class,driver);
-        verifyTrue(employeeListPage.isLoadingSpinnerDisappear(driver));
+        verifyTrue(dependentsPage.isLoadingSpinnerDisappear(driver));
 
         dependentsPage.clickToAddButton(driver,"Assigned Dependents");
         dependentsPage = PageGenerator.getPage(DependentsPageObject.class,driver);
@@ -316,18 +330,58 @@ public class Level_22_LiveCode extends BaseTest {
         verifyTrue(dependentsPage.isLoadingSpinnerDisappear(driver));
         dependentsPage.sleepInSecond(10);
 
-        //tương tự tcs 5
+
 
     }
 
     @Test
     public void Employee_07_Jobs() {
-      //trên trang HRM disable k cho thao tác
+        dependentsPage.clickToMenuMyInfo(driver, "Job");
+        jobPage = PageGenerator.getPage(JobPageObject.class,driver);
+        verifyTrue(jobPage.isLoadingSpinnerDisappear(driver));
+
+        jobPage.enterToTextboxByLabel(driver,"Joined Date",date);
+        jobPage.selectDropdownByLabel(driver,"Job Title",jobTile);
+        jobPage.selectDropdownByLabel(driver,"Job Category",jobCategory);
+        jobPage.selectDropdownByLabel(driver,"Sub Unit",subUnit);
+        jobPage.selectDropdownByLabel(driver,"Location",location);
+        jobPage.selectDropdownByLabel(driver,"Employment Status",employmentStatus);
+
+        jobPage.clickToButtonByText(driver, "Save");
+        jobPage = PageGenerator.getPage(JobPageObject.class, driver);
+
+        verifyTrue(jobPage.isToastMessageDisplay(driver, "Successfully Saved"));
+        verifyTrue(jobPage.isLoadingSpinnerDisappear(driver));
+
     }
 
     @Test
     public void Employee_08_Salary() {
-        //trên trang HRM disable k cho thao tác
+        jobPage.clickToMenuMyInfo(driver, "Salary");
+        salaryPage = PageGenerator.getPage(SalaryPageObject.class,driver);
+        verifyTrue(salaryPage.isLoadingSpinnerDisappear(driver));
+
+        salaryPage.clickToAddButton(driver,"Add Salary Component");
+        salaryPage = PageGenerator.getPage(SalaryPageObject.class,driver);
+        verifyTrue(salaryPage.isLoadingSpinnerDisappear(driver));
+
+        salaryPage.enterToTextboxByLabel(driver,"Salary Component",salaryComponent);
+        salaryPage.selectDropdownByLabel(driver,"Pay Grade",payGrade);
+        salaryPage.selectDropdownByLabel(driver,"Pay Frequency",payFrequency);
+        salaryPage.selectDropdownByLabel(driver,"Currency",currency);
+        salaryPage.enterToTextboxByLabel(driver,"Amount",amount);
+
+
+        salaryPage.clickToButtonByText(driver, "Save");
+        salaryPage = PageGenerator.getPage(SalaryPageObject.class, driver);
+
+        verifyTrue(salaryPage.isToastMessageDisplay(driver, "Successfully Saved"));
+        verifyTrue(salaryPage.isLoadingSpinnerDisappear(driver));
+
+        verifyEquals(salaryPage.InfoInTheTable(driver,"Salary Component"),name);
+        verifyEquals(salaryPage.InfoInTheTable(driver,"Amount"),amount);
+        verifyEquals(salaryPage.InfoInTheTable(driver,"Currency"),currency);
+        verifyEquals(salaryPage.InfoInTheTable(driver,"Pay Frequency"),payFrequency);
 
     }
 
@@ -425,12 +479,11 @@ public class Level_22_LiveCode extends BaseTest {
         employeeInformationPage.enterToTextboxByLabel(driver,"Employment Status",employeeStatus);
         employeeInformationPage.clickToButtonByText(driver, "Search");
         employeeInformationPage = PageGenerator.getPage(EmployeeInformationPageObject.class, driver);
+        verifyTrue(employeeInformationPage.isLoadingSpinnerDisappear(driver));
 
-
+        Assert.assertTrue(InfoInTheTable.contains(employeeStatus));
 
     }
-
-
 
 
     @AfterClass
@@ -449,9 +502,13 @@ public class Level_22_LiveCode extends BaseTest {
     private DependentsPageObject dependentsPage;
     private QualificationPageObject qualificationPage;
     private EmployeeInformationPageObject employeeInformationPage;
+    private JobPageObject jobPage;
+    private SalaryPageObject salaryPage;
     private String employeeID, adminUserName, adminPassword, employeeFirstName, employeeLastName;
     private String employeeUsername,employeePassword;
     private String street,city,state,zip,country,mobile,email;
     private String name,relationship,telephone;
-    private String company,job,from,to,level,institute,year,fluecy,language,compatency,employeeStatus;
+    private String company,job,from,to,level,institute,year,fluecy,language,compatency,employeeStatus,fileName;
+    private String date,jobTile,jobCategory,subUnit,location,employmentStatus;
+    private String salaryComponent,payGrade,payFrequency,currency,amount;
 }

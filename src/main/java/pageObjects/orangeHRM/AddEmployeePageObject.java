@@ -23,6 +23,10 @@ public class AddEmployeePageObject extends BasePage {
         waitElementVisible(driver, AddEmployeePageUI.LAST_NAME_TEXTBOX, textboxLabel);
         sendkeyToElement(driver, AddEmployeePageUI.LAST_NAME_TEXTBOX, lastName);
     }
+//
+//    public void enterToForm(Employee_Data employeeData){
+//
+//    }
 
     public String getEmployeeID() {
         waitElementVisible(driver, AddEmployeePageUI.EMPLOYEE_ID_TEXTBOX, textboxLabel);

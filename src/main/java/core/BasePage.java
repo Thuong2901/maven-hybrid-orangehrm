@@ -722,4 +722,9 @@ public class BasePage {
         waitElementClickable(driver, BasePageUI.MENU_HEADER, menuName);
         clickToElement(driver, BasePageUI.MENU_HEADER, menuName);
     }
+
+    public boolean InfoInTheTable(WebDriver driver, String columnName) {
+        waitElementInvisibleInDOM(driver,BasePageUI.INFO_IN_THE_TABLE,columnName);
+        return isElementUnDisplayed(driver,BasePageUI.INFO_IN_THE_TABLE,columnName);
+    }
 }

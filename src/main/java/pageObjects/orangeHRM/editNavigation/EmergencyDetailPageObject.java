@@ -13,5 +13,9 @@ public class EmergencyDetailPageObject extends EditNavigatorPageObject {
     }
 
 
+    public Object fileNameInTable(WebDriver driver, String fileName) {
+        waitElementVisible(driver, EmegencyDetailPageUI.FILE_NAME,fileName);
+        return getElementDOMProperty(driver,EmegencyDetailPageUI.FILE_NAME,"value",fileName);
 
+    }
 }

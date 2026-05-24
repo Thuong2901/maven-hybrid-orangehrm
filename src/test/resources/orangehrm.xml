@@ -9,9 +9,15 @@
 
     <test name="Run on FIREFOX browser">
         <parameter name="browser" value="Firefox"/>
-        <classes>
-            <class name="com.orangeHRM.Level_05_Page_Factory"/>
-        </classes>
+        <groups>
+            <run>
+                <include name ="employee"></include>
+            </run>
+        </groups>
+
+        <packages>
+            <package name="orangehrm"></package>
+        </packages>
     </test>
 
 </suite>
