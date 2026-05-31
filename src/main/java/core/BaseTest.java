@@ -94,6 +94,24 @@ public class BaseTest {
         }
     }
 
+    private String getEnvironmentUrl(String environmentName){
+        String envUrl= null;
+        switch (environmentName){
+            case "Dev":
+                envUrl ="https://opensource-demo.orangehrmlive.com/";
+                break;
+            case "Test":
+                envUrl ="https://test.orangehrmlive.com/";
+                break;
+            case "Staging":
+                envUrl ="https://staging.orangehrmlive.com/";
+                break;
+            case "Prod":
+                envUrl ="https://orangehrmlive.com/";
+                break;
+        }
+         return envUrl;
+    }
 
     protected int getRandomNumber(){
         return new Random().nextInt(99999);
