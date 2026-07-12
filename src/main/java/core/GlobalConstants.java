@@ -49,4 +49,27 @@ public class GlobalConstants {
     public static final String JIRA_SITE_URL = "https://home.atlassian.com/";
     public static final String JIRA_USERNAME = "thuong29011997@gmail.com";
     public static final String JIRA_PROJECT_KEY = "FRAMEWORK";
+
+    //BrowserStack
+    public static final String BROWSER_STACK_USERNAME = "thuong_0TkWi6";
+    public static final String BROWSER_STACK_AUTOMATE_KEY ="zizN7x9AqPtUtfdgzDU7";
+    public static final String BROWSER_STACK_URL = "https" + BROWSER_STACK_USERNAME +":" +BROWSER_STACK_AUTOMATE_KEY +"@hub-cloud.browserstack.com/wd/hub";
+
+    //SauceLab
+    public static final String SAUCE_USERNAME = "automationfc";
+    public static final String SAUCE_AUTOMATE_KEY = "f8117ac5-9793-4f8d-89ca-6a3c1d7216a5";
+    public static final String SAU_DATA_CENTER_POINT= "eu-central-1";
+    public static final String SAUCE_URL = "https://" + SAUCE_USERNAME + ":" + SAUCE_AUTOMATE_KEY
+                    + "@ondemand."+ SAU_DATA_CENTER_POINT+ ".saucelabs.com:443/wd/hub";
+
+    //Bitbar
+    public static final String BITBAR_AUTOMATE_KEY ="2uj8qEGhFy28N2MmNbWVyoMUBT2A2iQe";
+    public static final String BITBAR_EU_URL = "https://eu-desktop-hub.bitbar/com/wd/hub";
+    public static final String BITBAR_US_URL = "https://us-desktop-hub.bitbar/com/wd/hub";
+
+    //Lambda
+    public static final String LAMBDA_USERNAME = "thuongpham";
+    public static final String LAMBDA_AUTOMATE_KEY ="ESx4ZrEDil4nnp8lws97fhFDge2zTKWhXyhsCAYbxrsDg1WOfjQ";
+    public static final String LAMBDA_URL = "https://hub.lambdatest.com/wd/hub";
+
 }
