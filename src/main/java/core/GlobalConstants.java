@@ -56,7 +56,7 @@ public class GlobalConstants {
     public static final String BROWSER_STACK_URL = "https" + BROWSER_STACK_USERNAME +":" +BROWSER_STACK_AUTOMATE_KEY +"@hub-cloud.browserstack.com/wd/hub";
 
     //SauceLab
-    public static final String SAUCE_USERNAME = "automationfc";
+    public static final String SAUCE_USERNAME = "thuongpt";
     public static final String SAUCE_AUTOMATE_KEY = "f8117ac5-9793-4f8d-89ca-6a3c1d7216a5";
     public static final String SAU_DATA_CENTER_POINT= "eu-central-1";
     public static final String SAUCE_URL = "https://" + SAUCE_USERNAME + ":" + SAUCE_AUTOMATE_KEY
@@ -72,4 +72,6 @@ public class GlobalConstants {
     public static final String LAMBDA_AUTOMATE_KEY ="ESx4ZrEDil4nnp8lws97fhFDge2zTKWhXyhsCAYbxrsDg1WOfjQ";
     public static final String LAMBDA_URL = "https://hub.lambdatest.com/wd/hub";
 
+    //Device Farm
+    public static final String AWS_DEVICE_FARM = "anr:aws:devicefarm:us-west-2:4584428139224:testgrid-project:8d6e22db-2580-41d4-9569-0ecc10f2yshd";
 }

@@ -1,7 +1,10 @@
 package core;
 
+import browserFactory.*;
 import com.relevantcodes.extentreports.LogStatus;
-import org.apache.commons.logging.Log;
+import environmentFactory.BrowserStackEnvironment;
+import environmentFactory.EnvironmentList;
+import environmentFactory.SaucelabEnvironment;
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -15,7 +18,6 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxDriverService;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.GeckoDriverService;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariOptions;
 import org.testng.Assert;
@@ -24,7 +26,6 @@ import org.testng.annotations.BeforeSuite;
 import reportConfig.ExtentManager;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Path;
@@ -32,9 +33,9 @@ import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
-
-
-import static core.BrowserList.*;
+import software.amazon.awssdk.services.devicefarm.DeviceFarmClient;
+import software.amazon.awssdk.services.devicefarm.model.CreateTestGridUrlRequest;
+import software.amazon.awssdk.services.devicefarm.model.CreateTestGridUrlResponse;
 
 public class BaseTest {
     private WebDriver driver;
@@ -47,37 +48,26 @@ public class BaseTest {
         File extensionFilePath= null;
         switch (browser){
             case FIREFOX:
-                FirefoxDriverService fService= new GeckoDriverService.Builder().withLogOutput(System.out).
-                        withLogFile(new File (GlobalConstants.BROWSER_LOG_PATH+ "FireFoxLog.log")).build();
-                driver =new FirefoxDriver(fService);
+                driver = new FirefoxBrowserMananger().getDriver();
                 break;
             case CHROME:
-                ChromeDriverService cService= new ChromeDriverService.Builder().withLogOutput(System.out).
-                        withLogFile(new File (GlobalConstants.BROWSER_LOG_PATH+ "ChromeLog.log")).build();
-                driver = new ChromeDriver(cService);
+                driver = new ChromeBrowserMananger().getDriver();
                 break;
             case EDGE:
-
+                driver = new EdgeBrowserManager().getDriver();
                 driver = new EdgeDriver();
                 break;
             case HEAD_CHROME:
-                ChromeOptions chromeOptions = new ChromeOptions();
-                chromeOptions.addArguments("--headless");
-                chromeOptions.addArguments("window-size=1920x1080");
-                driver = new ChromeDriver(chromeOptions);
+                driver = new ChromeHeadlessBrowserManager().getDriver();
                 break;
             case HEAD_FIREFOX:
-                FirefoxOptions firefoxOptions = new FirefoxOptions();
-                firefoxOptions.addArguments("--headless");
-                firefoxOptions.addArguments("window-size=1920x1080");
-                driver = new FirefoxDriver(firefoxOptions);
+                driver = new FirefoxHeadlessBrowserManager().getDriver();
                 break;
             case HEAD_EDGE:
-                EdgeOptions edgeOptions = new EdgeOptions();
-                edgeOptions.addArguments("--headless");
-                edgeOptions.addArguments("window-size=1920x1080");
-                driver = new EdgeDriver(edgeOptions);
+                driver = new EdgeHeadlessBrowserManager().getDriver();
                 break;
+            case SAFARI:
+                driver = new SafariBrowserManager().getDriver();
             default:
                 throw new RuntimeException("Browser name is not valid!");
         }
@@ -284,6 +274,90 @@ public class BaseTest {
         driver.get(url);
         return driver;
     }
+
+    //CLOUD: DeviceFarm
+    protected WebDriver getBrowserDriverDeviceFarm(String appURL, String platformName, String browserName, String browserVersion) {
+        MutableCapabilities capability = null;
+        browserName = browserName.toLowerCase();
+
+        switch (browserName.toLowerCase()) {
+            case "firefox":
+                FirefoxOptions fOptions = new FirefoxOptions();
+                fOptions.setPlatformName(platformName);
+                fOptions.setBrowserVersion(browserVersion);
+                capability = fOptions;
+                break;
+            case "chrome":
+                ChromeOptions cOptions = new ChromeOptions();
+                cOptions.setPlatformName(platformName);
+                cOptions.setBrowserVersion(browserVersion);
+                capability = cOptions;
+                break;
+            case "edge":
+                EdgeOptions eOptions = new EdgeOptions();
+                eOptions.setPlatformName(platformName);
+                eOptions.setBrowserVersion(browserVersion);
+                capability = eOptions;
+                break;
+            case "safari":
+                SafariOptions sOptions = new SafariOptions();
+                sOptions.setPlatformName(platformName);
+                sOptions.setBrowserVersion(browserVersion);
+                capability = sOptions;
+                break;
+            default:
+                throw new RuntimeException("Browser is not valid!");
+        }
+
+        DeviceFarmClient client= DeviceFarmClient.builder().region(Region.US_WEST_2).build();
+        CreateTestGridUrlRequest request = CreateTestGridUrlRequest.builder().expiresInSeconds(300).projectArn(GlobalConstants.AWS_DEVICE_FARM).build();
+        URL testGridUrl = null;
+
+        try {
+            CreateTestGridUrlResponse response = client.createTestGridUrl(request);
+            testGridUrl = new URL(response.url());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        driver = new RemoteWebDriver(testGridUrl,capability);
+
+        driver.get(appURL);
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(GlobalConstants.LONG_TIME));
+        return driver;
+    }
+
+    //All
+   protected WebDriver getBrowserDirver(String environmentName,String url,String osName,String osVersion,String browserName,String browserVersion,String ipAddress,String portNumber){
+       EnvironmentList environmentList = EnvironmentList.valueOf(environmentName.toUpperCase());
+
+       switch (environmentList){
+
+           case BROWSERSTACK:
+               driver = new BrowserStackEnvironment(osName,osVersion,ipAddress,portNumber).createDirver();
+               break;
+           case SAUCELAB:
+               driver = new SaucelabEnvironment(osName,browserName,browserVersion).createDirver();
+               break;
+           case BITBAR:
+               driver = new FirefoxHeadlessBrowserManager().getDriver();
+               break;
+           case LAMBDA:
+               driver = new EdgeHeadlessBrowserManager().getDriver();
+               break;
+           case DEVICEFARM:
+               driver = new SafariBrowserManager().getDriver();
+           default:
+               throw new RuntimeException("Environment name is not valid!");
+       }
+
+       driver.get(appUrl);
+       //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+       driver.manage().window().maximize();
+       return driver;
+        return null;
+   }
+
     private String getEnvironmentUrl(String environmentName){
         String envUrl= null;
         switch (environmentName){
