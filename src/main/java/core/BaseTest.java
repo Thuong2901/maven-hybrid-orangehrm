@@ -40,6 +40,35 @@ import software.amazon.awssdk.services.devicefarm.model.CreateTestGridUrlRespons
 public class BaseTest {
     private WebDriver driver;
 
+    //
+    private static ThreadLocal<WebDriver> threadDriver = new ThreadLocal<WebDriver>();
+    public WebDriver getDriver(){
+        return threadDriver.get();
+    }
+
+
+    protected WebDriver getBrowserDriver( String appUrl,String browserName){
+        BrowserList browser = BrowserList.valueOf(browserName.toUpperCase());
+
+        switch (browser){
+            case FIREFOX:
+                threadDriver.set(new FirefoxDriver());
+                break;
+            case CHROME:
+                threadDriver.set(new ChromeDriver());
+                break;
+            case EDGE:
+                threadDriver.set(new EdgeDriver());
+                break;
+            default:
+                throw new RuntimeException("Browser name is not valid!");
+        }
+
+        threadDriver.get().get(GlobalConstants.DEV_USER_URL);
+        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+        threadDriver.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT));
+        return threadDriver.get();
+    }
 
     protected WebDriver getBrowserDriver( String appUrl,String browserName){
         BrowserList browser = BrowserList.valueOf(browserName.toUpperCase());
