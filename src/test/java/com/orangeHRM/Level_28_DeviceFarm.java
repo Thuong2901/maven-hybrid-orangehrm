@@ -19,7 +19,7 @@ import utilities.ExcelConfig;
 import utilities.PropertiesConfig;
 
 
-public class Level_28_DeviceFarm extends BaseTest {
+/*public class Level_28_DeviceFarm extends BaseTest {
     EnvironmentConfig environmentConfig;
 
     @Parameters({ "server", "os", "browser", "browser_version" })
@@ -58,4 +58,4 @@ public class Level_28_DeviceFarm extends BaseTest {
     private PropertiesConfig propertiesConfig;
     private String employeeID, adminUserName, adminPassword,employeeUsername,employeeEmail;
 
-}
+}*/

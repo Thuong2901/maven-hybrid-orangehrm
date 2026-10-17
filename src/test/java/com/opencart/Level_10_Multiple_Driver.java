@@ -69,7 +69,7 @@ public class Level_10_Multiple_Driver extends BaseTest {
 
         Assert.assertTrue(adminDashboardPage.isDashboardHeaderDisplayed());
 
-        adminCustomerPage = adminDashboardPage.OpenCustomerPage();
+        adminCustomerPage = adminDashboardPage.openCustomerPage();
         Assert.assertTrue(adminCustomerPage.isCustomerHeaderDisplayed());
 
         userHomePage.clickToMyAccount();

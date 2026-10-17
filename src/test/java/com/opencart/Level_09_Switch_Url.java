@@ -69,9 +69,9 @@ public class Level_09_Switch_Url extends BaseTest {
         adminLoginPage.enterToPassword(adminPassword);
         adminDashboardPage = adminLoginPage.clickToLoginButton();
 
-        adminCustomerPage = adminDashboardPage.OpenCustomerPage();
+        adminCustomerPage = adminDashboardPage.openCustomerPage();
 
-        adminLoginPage = adminCustomerPage.ClickToLogoutLinkAtAdminSite(driver);
+        adminLoginPage = adminCustomerPage.clickToLogoutLinkAtAdminSite(driver);
 
         userHomePage = adminLoginPage.openUserSite(driver,userURL);
 
@@ -112,7 +112,7 @@ public class Level_09_Switch_Url extends BaseTest {
         adminLoginPage.enterToPassword(adminPassword);
         adminDashboardPage = adminLoginPage.clickToLoginButton();
 
-        adminCustomerPage = adminDashboardPage.OpenCustomerPage();
+        adminCustomerPage = adminDashboardPage.openCustomerPage();
 
         //admin -> user
         userHomePage = adminLoginPage.openUserSite(driver,userURL);
@@ -162,7 +162,7 @@ public class Level_09_Switch_Url extends BaseTest {
 
         Assert.assertTrue(adminDashboardPage.isDashboardHeaderDisplayed());
 
-        adminCustomerPage = adminDashboardPage.OpenCustomerPage();
+        adminCustomerPage = adminDashboardPage.openCustomerPage();
         adminWindowID =adminCustomerPage.getCurrentWindowID(driver);
 
         //admin -> user

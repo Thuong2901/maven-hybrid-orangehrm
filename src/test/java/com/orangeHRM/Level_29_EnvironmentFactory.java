@@ -1,43 +1,59 @@
-package com.orangeHRM;
 
-//import từ thư viện
+package com.orangeHRM;
 
 import core.BaseTest;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.*;
-import pageFactory.orangeHRM.AddEmployeePageObject;
-import pageFactory.orangeHRM.DashboardPageObject;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+
 import pageObjects.PageGenerator;
-import pageObjects.orangeHRM.EmployeeListPageObject;
 import pageObjects.orangeHRM.LoginPageObject;
-import pageObjects.orangeHRM.editNavigation.PersonalDetailPageObject;
-import software.amazon.awssdk.services.sagemaker.model.EnvironmentConfig;
-import utilities.ExcelConfig;
 import utilities.PropertiesConfig;
 
-
 public class Level_29_EnvironmentFactory extends BaseTest {
-    EnvironmentConfig serverConfig;
 
-    @Parameters({"server","environment", "osName","osVersion","browserName","browserVersion","ipAddress","portNumber"})
+    @Parameters({
+            "server",
+            "environment",
+            "osName",
+            "osVersion",
+            "browserName",
+            "browserVersion",
+            "ipAddress",
+            "portNumber"
+    })
     @BeforeClass
-    public void beforeClass(String serverName,@Optional("BrowserStack") String environment,@Optional("Windows") String osName, String osVersion, @Optional("chrome") String browserName,@Optional("latest") String browserVersion,@Optional("localhost") String ipAddress,@Optional("4444") String portNumber) {
-        ConfigFactory.setProperty("environment",serverName);
-        serverConfig = ConfigFactory.create(EnvironmentConfig.class);
+    public void beforeClass(
+            String serverName,
+            @Optional("BrowserStack") String environment,
+            @Optional("Windows") String osName,
+            @Optional("latest") String osVersion,
+            @Optional("chrome") String browserName,
+            @Optional("latest") String browserVersion,
+            @Optional("localhost") String ipAddress,
+            @Optional("4444") String portNumber) {
 
-        driver = getBrowserDirver(environment,serverConfig.getAppUrl(),osName,osVersion,browserName,browserVersion,ipAddress,portNumber);
+        PropertiesConfig propertiesConfig =
+                PropertiesConfig.getProperties(serverName);
 
-        loginPage = PageGenerator.getLoginPage(driver);
+        String appUrl = propertiesConfig.getApplicationUrl();
+
+        // Tạm thời dùng driver thông thường để tránh gọi sai method.
+        // Sẽ chọn driver phù hợp sau khi kiểm tra BaseTest.
+        driver = getBrowserDriver(appUrl, browserName);
+
+        loginPage = PageGenerator.getPage(
+                LoginPageObject.class, driver
+        );
     }
 
     @Test
     public void Employee_01_NewEmployee() {
-
-
+        // Thêm các bước test tại đây.
     }
-
-
-
 
     @AfterClass
     public void afterClass() {
@@ -46,12 +62,4 @@ public class Level_29_EnvironmentFactory extends BaseTest {
 
     private WebDriver driver;
     private LoginPageObject loginPage;
-    private DashboardPageObject dashboardPage;
-    private EmployeeListPageObject employeeListPage;
-    private AddEmployeePageObject addEmployeePage;
-    private PersonalDetailPageObject personalDetailPage;
-    private ExcelConfig excelConfig;
-    private PropertiesConfig propertiesConfig;
-    private String employeeID, adminUserName, adminPassword,employeeUsername,employeeEmail;
-
 }

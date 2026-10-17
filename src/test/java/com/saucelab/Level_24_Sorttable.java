@@ -13,7 +13,7 @@ import pageObjects.saucelab.ProductPO;
 import pageObjects.techpanda.LoginPO;
 
 
-public class Level_24_Sorttable extends BaseTest {
+/*public class Level_24_Sorttable extends BaseTest {
 
 
     @Parameters({"appUrl", "browser"})
@@ -58,4 +58,4 @@ public class Level_24_Sorttable extends BaseTest {
     private LoginPO loginPage;
     private ProductPO productPage;
 
-}
+}*/

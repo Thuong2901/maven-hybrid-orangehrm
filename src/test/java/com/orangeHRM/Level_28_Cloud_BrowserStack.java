@@ -1,14 +1,10 @@
+
 package com.orangeHRM;
 
-//import từ thư viện
-
-import com.fasterxml.jackson.databind.cfg.ConfigFeature;
 import core.BaseTest;
-import org.apache.poi.hslf.record.Environment;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
@@ -22,30 +18,37 @@ import pageObjects.orangeHRM.editNavigation.PersonalDetailPageObject;
 import utilities.ExcelConfig;
 import utilities.PropertiesConfig;
 
+/*public class Level_28_Cloud_BrowserStack extends BaseTest {
 
-public class Level_28_Cloud_BrowserStack extends BaseTest {
-    private static final Logger log = LoggerFactory.getLogger(Level_28_Cloud_BrowserStack.class);
-    EnvironmentConfig environmentConfig;
+    private static final Logger log =
+            LoggerFactory.getLogger(Level_28_Cloud_BrowserStack.class);
 
-    @Parameters({"environment", "osName","osVersion","browserName","browserVersion"})
+    @Parameters({"environment", "osName", "osVersion", "browserName", "browserVersion"})
     @BeforeClass
-    public void beforeClass(String environment, String osName,String osVersion,String browserName,String browserVersion) {
-        ConfigFactory.setProperty("environment",environment);
-        environmentConfig = ConfigFactory.create(EnvironmentConfig.class);
+    public void beforeClass(
+            String environment,
+            String osName,
+            String osVersion,
+            String browserName,
+            String browserVersion) {
 
-        driver = getBrowserDriverBrowserStack(environmentConfig.getAppUrl(),osName,osVersion,browserName,browserVersion);
+        propertiesConfig = PropertiesConfig.getProperties(environment);
 
-        loginPage = PageGenerator.getLoginPage(driver);
+        driver = getBrowserDriverBrowserStack(
+                propertiesConfig.getApplicationUrl(),
+                osName,
+                osVersion,
+                browserName,
+                browserVersion
+        );
+
+        loginPage = PageGenerator.getPage(LoginPageObject.class, driver);
     }
 
     @Test
     public void Employee_01_NewEmployee() {
 
-
     }
-
-
-
 
     @AfterClass
     public void afterClass() {
@@ -60,6 +63,6 @@ public class Level_28_Cloud_BrowserStack extends BaseTest {
     private PersonalDetailPageObject personalDetailPage;
     private ExcelConfig excelConfig;
     private PropertiesConfig propertiesConfig;
-    private String employeeID, adminUserName, adminPassword,employeeUsername,employeeEmail;
-
-}
+    private String employeeID, adminUserName, adminPassword,
+            employeeUsername, employeeEmail;
+}*/

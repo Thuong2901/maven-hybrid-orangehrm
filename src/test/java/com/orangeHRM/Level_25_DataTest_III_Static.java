@@ -30,8 +30,8 @@ public class Level_25_DataTest_III_Static extends BaseTest {
 
         employeeID = String.valueOf(getRandomNumber());
 
-        loginPage.enterToTextboxByLabel(driver,"Username", EmployeeData.ADMIN_USERNAME);
-        loginPage.enterToTextboxByLabel(driver,"Password",EmployeeData.ADMIN_PASSWORD);
+        //loginPage.enterToTextboxByLabel(driver,"Username", EmployeeData.ADMIN_USERNAME);
+        //loginPage.enterToTextboxByLabel(driver,"Password",EmployeeData.ADMIN_PASSWORD);
 
         loginPage.clickToButtonByText(driver,"Login");
         dashboardPage=PageGenerator.getPage(DashboardPageObject.class,driver);

@@ -4,28 +4,51 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="144e7c04-6fd8-470c-8696-a8ab7584cb9c" name="Changes" comment="Data Test part I -&gt;IV">
-      <change afterPath="$PROJECT_DIR$/dataFile/employee.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dataFile/employee.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dataFile/product.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/environmentConfig/env-dev.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/environmentConfig/env-test.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/orangeHRM/Level_25_DataTest_VI_Excel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/orangeHRM/Level_25_DataTest_V_Json.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/orangeHRM/Level_26_Environment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/testdata/model/Employee.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/testdata/model/Product.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/RunOrangeDev.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/RunOrangeStaging.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/RunOrangeTest.xml" afterDir="false" />
+    <list default="true" id="144e7c04-6fd8-470c-8696-a8ab7584cb9c" name="Changes" comment="fix">
+      <change afterPath="$PROJECT_DIR$/src/main/java/utilities/EnvironmentConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/core/BasePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/BasePage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/core/BaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/BaseTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/core/GlobalConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/GlobalConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/ExcelConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/ExcelConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/environmentFactory/DeviceFarmEnvironment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/environmentFactory/DeviceFarmEnvironment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/jiraConfigs/JiraListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jiraConfigs/JiraListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pageFactory/orangeHRM/AddEmployeePageObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pageFactory/orangeHRM/AddEmployeePageObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pageFactory/orangeHRM/DashboardPageObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pageFactory/orangeHRM/DashboardPageObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pageObjects/PageGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pageObjects/PageGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pageObjects/gofile/HomePageObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pageObjects/gofile/HomePageObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pageObjects/jquery/HomePageObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pageObjects/jquery/HomePageObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pageObjects/openCart/admin/AdminCustomerPO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pageObjects/openCart/admin/AdminCustomerPO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pageObjects/openCart/admin/AdminDashboardPO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pageObjects/openCart/admin/AdminDashboardPO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pageObjects/openCart/admin/AdminLoginPO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pageObjects/openCart/admin/AdminLoginPO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pageObjects/openCart/user/UserLoginPO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pageObjects/openCart/user/UserLoginPO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pageObjects/openCart/user/UserMyAccountPO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pageObjects/openCart/user/UserMyAccountPO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pageObjects/openCart/user/UserRegisterPO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pageObjects/openCart/user/UserRegisterPO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pageObjects/orangeHRM/AddEmployeePageObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pageObjects/orangeHRM/AddEmployeePageObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pageObjects/orangeHRM/EmployeeListPageObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pageObjects/orangeHRM/EmployeeListPageObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pageObjects/orangeHRM/LoginPageObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pageObjects/orangeHRM/LoginPageObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pageObjects/orangeHRM/PageGeneratorManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pageObjects/orangeHRM/PageGeneratorManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pageObjects/orangeHRM/editNavigation/ContactDetailPageObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pageObjects/orangeHRM/editNavigation/ContactDetailPageObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pageObjects/orangeHRM/editNavigation/PersonalDetailPageObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pageObjects/orangeHRM/editNavigation/PersonalDetailPageObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pageObjects/saucelab/ProductPO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pageObjects/saucelab/ProductPO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/reportConfig/AllureTestListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/reportConfig/AllureTestListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/reportConfig/ChainTestListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/reportConfig/ChainTestListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/reportConfig/ExtentManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/reportConfig/ExtentManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/utilities/PropertiesConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/PropertiesConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/orangehrm.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/orangehrm.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/jquery/Level_12_DataTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/jquery/Level_12_DataTable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/opencart/Level_09_Switch_Url.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/opencart/Level_09_Switch_Url.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/opencart/Level_10_Multiple_Driver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/opencart/Level_10_Multiple_Driver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/orangeHRM/Level_11_By_Locator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/orangeHRM/Level_11_By_Locator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/orangeHRM/Level_13_Logging.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/orangeHRM/Level_13_Logging.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/orangeHRM/Level_14_Extend2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/orangeHRM/Level_14_Extend2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/orangeHRM/Level_15_ChainTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/orangeHRM/Level_15_ChainTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/orangeHRM/Level_22_LiveCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/orangeHRM/Level_22_LiveCode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/orangeHRM/Level_25_DataTest_II_TestNG.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/orangeHRM/Level_25_DataTest_II_TestNG.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/orangeHRM/Level_28_Cloud_Bitbar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/orangeHRM/Level_28_Cloud_Bitbar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/orangeHRM/Level_28_Cloud_BrowserStack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/orangeHRM/Level_28_Cloud_BrowserStack.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/orangeHRM/Level_28_Lambda.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/orangeHRM/Level_28_Lambda.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/orangeHRM/Level_28_SauceLab.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/orangeHRM/Level_28_SauceLab.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,10 +58,12 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="HTML File" />
         <option value="Dockerfile" />
         <option value="kotlin.jupyter.empty" />
+        <option value="Interface" />
+        <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -69,18 +94,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Topic_02_Faker.executor": "Run",
-    "DefaultHtmlFileTemplate": "HTML File",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "F:/Framework/Maven/maven-hybrid-orangehrm/src/test/resources"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Topic_02_Faker.executor&quot;: &quot;Run&quot;,
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;F:/Framework/Maven/maven-hybrid-orangehrm/src/test/resources&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.orangeHRM" />
@@ -95,10 +120,10 @@
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.orangeHRM" />
+      <recent name="browserFactory" />
       <recent name="javaFaker" />
       <recent name="utilities" />
       <recent name="pageUIs.orangeHRM.editNavigation" />
-      <recent name="pageObjects.orangeHRM.editNavigation" />
     </key>
   </component>
   <component name="RunManager">
@@ -161,7 +186,55 @@
       <option name="project" value="LOCAL" />
       <updated>1779624004347</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="environment">
+      <option name="closed" value="true" />
+      <created>1780217545540</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1780217545540</updated>
+    </task>
+    <task id="LOCAL-00006" summary="cloud testing">
+      <option name="closed" value="true" />
+      <created>1783866149420</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1783866149420</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Factory Browser + Factory environment">
+      <option name="closed" value="true" />
+      <created>1785063851667</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1785063851667</updated>
+    </task>
+    <task id="LOCAL-00008" summary="parallel testing">
+      <option name="closed" value="true" />
+      <created>1785760784764</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1785760784764</updated>
+    </task>
+    <task id="LOCAL-00009" summary="fix">
+      <option name="closed" value="true" />
+      <created>1792208031095</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1792208031095</updated>
+    </task>
+    <task id="LOCAL-00010" summary="fix">
+      <option name="closed" value="true" />
+      <created>1792208233554</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1792208233554</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -169,7 +242,12 @@
     <MESSAGE value="Sort" />
     <MESSAGE value="Livecode+ Browser config" />
     <MESSAGE value="Data Test part I -&gt;IV" />
-    <option name="LAST_COMMIT_MESSAGE" value="Data Test part I -&gt;IV" />
+    <MESSAGE value="environment" />
+    <MESSAGE value="cloud testing" />
+    <MESSAGE value="Factory Browser + Factory environment" />
+    <MESSAGE value="parallel testing" />
+    <MESSAGE value="fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -178,6 +256,11 @@
           <url>file://$PROJECT_DIR$/src/test/java/com/orangeHRM/Level_22_LiveCode.java</url>
           <line>488</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/orangeHRM/Level_22_LiveCode.java</url>
+          <line>20</line>
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

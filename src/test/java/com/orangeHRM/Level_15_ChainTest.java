@@ -21,7 +21,6 @@ import reportConfig.ExtentManager;
 
 import java.lang.reflect.Method;
 
-import static jdk.nio.zipfs.ZipFileAttributeView.AttrID.method;
 
 
 public class Level_15_ChainTest extends BaseTest {

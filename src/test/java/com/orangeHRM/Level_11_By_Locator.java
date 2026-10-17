@@ -88,7 +88,7 @@ public class Level_11_By_Locator extends BaseTest {
 
     @Test
     public void Employee_03_Dynamic_Page(){
-        personalDetailPage.openEditNavigatorPageName("Contact Details")
+        personalDetailPage.openEditNavigatorPageName("Contact Details");
         contactDetailPage =PageGenerator.getPage(ContactDetailPageObject.class,driver);
 
                 //Từ Contact sang Job

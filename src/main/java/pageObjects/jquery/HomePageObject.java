@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import pageUIs.jquery.HomePageUI;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class HomePageObject extends BasePage {
@@ -75,11 +76,12 @@ public class HomePageObject extends BasePage {
     }
 
     public List<String> getColumnAllValueByColumnName(String columnName) {
-        List<WebElement> allPage = getListElement(driver, HomePageUI.ALL_PAGE);
+        int columnIndex = 0;
+        List<WebElement> allPage = getListElement(driver, HomePageUI.ALL_PAGE, String.valueOf(columnIndex));
         List<String> columnAllValue = new ArrayList<String>();
 
         waitListElementVisible(driver, HomePageUI.DYNAMIC_INDEX_BY_COLUMN_NAME, columnName);
-        int columnIndex = getListElementNumber(driver, HomePageUI.DYNAMIC_INDEX_BY_COLUMN_NAME, columnName) + 1;
+        columnIndex = getListElementNumber(driver, HomePageUI.DYNAMIC_INDEX_BY_COLUMN_NAME, columnName) + 1;
 
         for (WebElement page : allPage) {
             page.click();
@@ -98,13 +100,28 @@ public class HomePageObject extends BasePage {
         return isElementDisplayed(driver, HomePageUI.IS_FILE_LOADED, fileName);
     }
 
+
+
+
     public void clickStartUpload() {
-        List<WebElement> startButtons = getListElement(driver, HomePageUI.START_UPLOAD_BUTTON);
-        for (WebElement starButton:startButtons){
-            waitElementClickable(driver, starButton).click();
-            sleepInSecond(2);
+        int numberOfButtons = getListElement(
+                driver, HomePageUI.START_UPLOAD_BUTTON
+        ).size();
+
+        for (int i = 0; i < numberOfButtons; i++) {
+            List<WebElement> startButtons = getListElement(
+                    driver, HomePageUI.START_UPLOAD_BUTTON
+            );
+
+            if (i < startButtons.size()) {
+                startButtons.get(i).click();
+                sleepInSecond(2);
+            }
         }
     }
+
+
+
 
     public boolean isFileUploadedSuccess(String fileName) {
         waitElementVisible(driver, HomePageUI.IS_FILE_UPLOADED, fileName);

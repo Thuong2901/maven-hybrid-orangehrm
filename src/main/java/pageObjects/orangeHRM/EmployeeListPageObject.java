@@ -1,3 +1,4 @@
+
 package pageObjects.orangeHRM;
 
 import core.BasePage;
@@ -8,6 +9,7 @@ import pageObjects.orangeHRM.editNavigation.PersonalDetailPageObject;
 import pageUIs.orangeHRM.EmployeeListPageUI;
 
 public class EmployeeListPageObject extends BasePage {
+
     private WebDriver driver;
 
     public EmployeeListPageObject(WebDriver driver) {
@@ -16,13 +18,13 @@ public class EmployeeListPageObject extends BasePage {
 
     public AddEmployeePageObject clickToAddEmployeeButton() {
         waitElementClickable(driver, EmployeeListPageUI.ADD_EMPLOYEE_BUTTON);
-        clickToElement(driver,EmployeeListPageUI.ADD_EMPLOYEE_BUTTON);
-        return PageGenerator.getPage(AddEmployeePageObject.class,driver);
+        clickToElement(driver, EmployeeListPageUI.ADD_EMPLOYEE_BUTTON);
+        return PageGenerator.getPage(AddEmployeePageObject.class, driver);
     }
 
-    public void clickToEditButton() {
+    public PersonalDetailPageObject clickToEditButton() {
         waitElementClickable(driver, EmployeeListPageUI.EDIT_BUTTON);
-        clickToElement(driver,EmployeeListPageUI.ADD_EMPLOYEE_BUTTON);
-        return PageGenerator.getPage(PersonalDetailPageObject.class,driver);
+        clickToElement(driver, EmployeeListPageUI.EDIT_BUTTON);
+        return PageGenerator.getPage(PersonalDetailPageObject.class, driver);
     }
 }

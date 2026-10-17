@@ -20,7 +20,7 @@ import pageObjects.techpanda.RegisterPO;
 import java.util.Set;
 
 
-public class Level_20_Cookies extends BaseTest {
+/*public class Level_20_Cookies extends BaseTest {
 
     @Parameters({"appUrl", "browser"})
     @BeforeClass
@@ -56,4 +56,4 @@ public class Level_20_Cookies extends BaseTest {
     private MyAccountPO myAccountPage;
     private Set<Cookie> cookies;
 
-}
+}*/

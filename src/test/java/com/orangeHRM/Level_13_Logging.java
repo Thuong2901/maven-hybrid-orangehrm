@@ -14,9 +14,13 @@ import pageObjects.PageGenerator;
 import pageObjects.orangeHRM.EmployeeListPageObject;
 import pageObjects.orangeHRM.LoginPageObject;
 import pageObjects.orangeHRM.editNavigation.PersonalDetailPageObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 public class Level_13_Logging extends BaseTest {
+    private static final Logger log =
+            LoggerFactory.getLogger(Level_13_Logging.class);
 
     @Parameters({"appUrl", "browser"})
     @BeforeClass

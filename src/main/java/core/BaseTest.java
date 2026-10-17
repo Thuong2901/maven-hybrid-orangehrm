@@ -1,7 +1,7 @@
 package core;
 
 import browserFactory.*;
-import com.relevantcodes.extentreports.LogStatus;
+import software.amazon.awssdk.regions.Region;
 import environmentFactory.BrowserStackEnvironment;
 import environmentFactory.EnvironmentList;
 import environmentFactory.SaucelabEnvironment;
@@ -9,15 +9,10 @@ import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxDriverService;
 import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.firefox.GeckoDriverService;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariOptions;
 import org.testng.Assert;
@@ -32,7 +27,7 @@ import java.nio.file.Path;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.*;
-import java.util.concurrent.TimeUnit;
+
 import software.amazon.awssdk.services.devicefarm.DeviceFarmClient;
 import software.amazon.awssdk.services.devicefarm.model.CreateTestGridUrlRequest;
 import software.amazon.awssdk.services.devicefarm.model.CreateTestGridUrlResponse;
@@ -47,7 +42,7 @@ public class BaseTest {
     }
 
 
-    protected WebDriver getBrowserDriver( String appUrl,String browserName){
+    /*protected WebDriver getBrowserDriver( String appUrl,String browserName){
         BrowserList browser = BrowserList.valueOf(browserName.toUpperCase());
 
         switch (browser){
@@ -68,7 +63,7 @@ public class BaseTest {
         //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
         threadDriver.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT));
         return threadDriver.get();
-    }
+    }*/
 
     protected WebDriver getBrowserDriver( String appUrl,String browserName){
         BrowserList browser = BrowserList.valueOf(browserName.toUpperCase());
@@ -118,7 +113,7 @@ public class BaseTest {
         }
     }
     //Cloud:BrowserStack
-    protected WebDriver getBrowserDriverBrowserStack(String url, String osName, String osVersion, String browserName, String browserVersion) {
+   /* protected WebDriver getBrowserDriverBrowserStack(String url, String osName, String osVersion, String browserName, String browserVersion) {
 
         MutableCapabilities capabilities = new MutableCapabilities();
         HashMap<String,Object> bstackOptions = new HashMap<>();
@@ -142,15 +137,15 @@ public class BaseTest {
             e.printStackTrace();
         }
 
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
         driver.get(url);
 
         return driver;
-    }
+    }*/
 
     //Cloud:SauceLab
-    protected WebDriver getBrowserDriverSauceLab(String url, String platformName, String browserName, String browserVersion) {
+    protected WebDriver getBrowserDriverSauceLab(String url, String platformName, String browserName, String browserVersion, String version) {
 
         MutableCapabilities capability = null;
         browserName = browserName.toLowerCase();
@@ -198,7 +193,7 @@ public class BaseTest {
             e.printStackTrace();
         }
 
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
         driver.get(url);
 
@@ -234,7 +229,7 @@ public class BaseTest {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
         driver.get(url);
 
@@ -361,12 +356,16 @@ public class BaseTest {
        EnvironmentList environmentList = EnvironmentList.valueOf(environmentName.toUpperCase());
 
        switch (environmentList){
-
            case BROWSERSTACK:
-               driver = new BrowserStackEnvironment(osName,osVersion,ipAddress,portNumber).createDirver();
+               driver = new BrowserStackEnvironment(
+                       driver, osName, osVersion, ipAddress, portNumber
+               ).createDirver();
                break;
+
            case SAUCELAB:
-               driver = new SaucelabEnvironment(osName,browserName,browserVersion).createDirver();
+               driver = new SaucelabEnvironment(
+                       driver, osName, browserName, browserVersion
+               ).createDirver();
                break;
            case BITBAR:
                driver = new FirefoxHeadlessBrowserManager().getDriver();
@@ -380,11 +379,10 @@ public class BaseTest {
                throw new RuntimeException("Environment name is not valid!");
        }
 
-       driver.get(appUrl);
+       driver.get(url);
        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
        driver.manage().window().maximize();
        return driver;
-        return null;
    }
 
     private String getEnvironmentUrl(String environmentName){
@@ -416,13 +414,13 @@ public class BaseTest {
         boolean pass = true;
         try {
             Assert.assertTrue(condition);
-            log.info("-----------PASSED----------");
+            Reporter.log("-----------PASSED----------", true);
         } catch (Throwable e) {
             pass = false;
 
             VerificationFailures.getFailures().addFailureForTest(Reporter.getCurrentTestResult(), e);
             Reporter.getCurrentTestResult().setThrowable(e);
-            log.info("-----------FAILED----------");
+            Reporter.log("-----------FAILED----------", true);
         }
         return pass;
     }
@@ -431,12 +429,12 @@ public class BaseTest {
         boolean pass = true;
         try {
             Assert.assertFalse(condition);
-            log.info("-----------PASSED----------");
+            Reporter.log("-----------PASSED----------", true);
         } catch (Throwable e) {
             pass = false;
             VerificationFailures.getFailures().addFailureForTest(Reporter.getCurrentTestResult(), e);
             Reporter.getCurrentTestResult().setThrowable(e);
-            log.info("-----------FAILED----------");
+            Reporter.log("-----------FAILED----------", true);
         }
         return pass;
     }
@@ -446,12 +444,12 @@ public class BaseTest {
         boolean pass = true;
         try {
             Assert.assertEquals(actual, expected);
-            log.info("-----------PASSED----------");
+            Reporter.log("-----------PASSED----------", true);
         } catch (Throwable e) {
             pass = false;
             VerificationFailures.getFailures().addFailureForTest(Reporter.getCurrentTestResult(), e);
             Reporter.getCurrentTestResult().setThrowable(e);
-            log.info("-----------FAILED----------");
+            Reporter.log("-----------FAILED----------", true);
         }
         return pass;
     }
@@ -460,27 +458,32 @@ public class BaseTest {
         boolean pass = true;
         try {
             Assert.assertNotEquals(actual, expected);
-            log.info("-----------PASSED----------");
+            Reporter.log("-----------PASSED----------", true);
         } catch (Throwable e) {
             pass = false;
             VerificationFailures.getFailures().addFailureForTest(Reporter.getCurrentTestResult(), e);
             Reporter.getCurrentTestResult().setThrowable(e);
-            log.info("-----------FAILED----------");
+            Reporter.log("-----------FAILED----------", true);
         }
         return pass;
     }
 
 
-    public WebDriver getDriver() {
-        return this.driver;
-    }
 
-    protected void takeScreenshot(){
-        String base64Screenshot="data:immage/png;base64,"+((TakesScreenshot) driver).getScreenshotAs(OutputType.BASE64);
-        ExtentManager.getTest().log(LogStatus.INFO,"Test Failed",ExtentManager.getTest().addBase64ScreenShot(base64Screenshot));
+    protected void takeScreenshot() {
+        String base64Screenshot = "data:image/png;base64,"
+                + ((TakesScreenshot) getDriver())
+                .getScreenshotAs(OutputType.BASE64);
+
+        ExtentManager.getTest().log(
+                com.aventstack.extentreports.Status.INFO,
+                "Test Failed - Screenshot captured (Base64 length: "
+                        + base64Screenshot.length() + ")"
+        );
     }
 
     protected WebDriver getDriverInstance() {
+        return getDriver();
     }
 
     @BeforeSuite

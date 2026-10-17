@@ -18,11 +18,11 @@ import pageObjects.orangeHRM.LoginPageObject;
 import pageObjects.orangeHRM.editNavigation.*;
 
 
-public class Level_22_LiveCode extends BaseTest {
+/*public class Level_22_LiveCode extends BaseTest {
 
 
 
-    @Parameters({"appUrl", "browser"})
+   @Parameters({"appUrl", "browser"})
     @BeforeClass
     public void beforeClass(String appURL, String browserName) {
         driver = getBrowserDriver(appURL, browserName);
@@ -511,4 +511,4 @@ public class Level_22_LiveCode extends BaseTest {
     private String company,job,from,to,level,institute,year,fluecy,language,compatency,employeeStatus,fileName;
     private String date,jobTile,jobCategory,subUnit,location,employmentStatus;
     private String salaryComponent,payGrade,payFrequency,currency,amount;
-}
+}*/

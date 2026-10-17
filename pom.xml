@@ -35,7 +35,55 @@
         <groupId>org.testng</groupId>
         <artifactId>testng</artifactId>
         <version>7.11.0</version>
-        <scope>test</scope>
+    </dependency>
+
+    <!-- Allure: annotation @Step -->
+    <dependency>
+        <groupId>io.qameta.allure</groupId>
+        <artifactId>allure-java-commons</artifactId>
+        <version>2.35.5</version>
+    </dependency>
+
+    <!-- ExtentReports phiên bản 2: dùng bởi BaseTest -->
+    <dependency>
+        <groupId>com.relevantcodes</groupId>
+        <artifactId>extentreports</artifactId>
+        <version>2.41.2</version>
+    </dependency>
+
+    <!-- ExtentReports phiên bản 5: dùng bởi reportConfig -->
+    <dependency>
+        <groupId>com.aventstack</groupId>
+        <artifactId>extentreports</artifactId>
+        <version>5.1.2</version>
+    </dependency>
+
+    <!-- ChainTest cho TestNG -->
+    <dependency>
+        <groupId>com.aventstack</groupId>
+        <artifactId>chaintest-testng</artifactId>
+        <version>1.0.7</version>
+    </dependency>
+
+    <!-- SLF4J -->
+    <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>2.0.17</version>
+    </dependency>
+
+    <!-- Jira Client -->
+    <dependency>
+        <groupId>net.rcarz</groupId>
+        <artifactId>jira-client</artifactId>
+        <version>0.5</version>
+    </dependency>
+
+    <!-- Commons Lang 2: dùng bởi JiraListener -->
+    <dependency>
+        <groupId>commons-lang</groupId>
+        <artifactId>commons-lang</artifactId>
+        <version>2.6</version>
     </dependency>
 
     <!-- Source: https://mvnrepository.com/artifact/org.assertj/assertj-core -->
@@ -56,16 +104,24 @@
     <dependency>
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
-        <version>RELEASE</version>
-        <scope>test</scope>
-    </dependency>
-    <dependency>
-        <groupId>org.junit.jupiter</groupId>
-        <artifactId>junit-jupiter</artifactId>
-        <version>RELEASE</version>
+        <version>4.13.2</version>
         <scope>test</scope>
     </dependency>
 
+
+    <dependency>
+        <groupId>org.aeonbits.owner</groupId>
+        <artifactId>owner</artifactId>
+        <version>1.0.12</version>
+    </dependency>
+
+
+    <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter</artifactId>
+        <version>5.12.2</version>
+        <scope>test</scope>
+    </dependency>
     <!-- Source: https://mvnrepository.com/artifact/com.github.javafaker/javafaker -->
     <dependency>
         <groupId>com.github.javafaker</groupId>
@@ -120,6 +176,14 @@
         <artifactId>poi-ooxml</artifactId>
         <version>5.5.1</version>
         <scope>compile</scope>
+    </dependency>
+
+    <!-- Source: https://mvnrepository.com/artifact/software.amazon.awssdk/aws-sdk-java -->
+    <dependency>
+        <groupId>software.amazon.awssdk</groupId>
+        <artifactId>aws-sdk-java</artifactId>
+        <version>2.47.6</version>
+        <scope>provided</scope>
     </dependency>
 </dependencies>
 
@@ -183,5 +247,7 @@
         </build>
     </profile>
     </profiles>
+
+
 </project>
 

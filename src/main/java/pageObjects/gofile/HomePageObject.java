@@ -1,3 +1,4 @@
+
 package pageObjects.gofile;
 
 import core.BasePage;
@@ -5,11 +6,12 @@ import org.openqa.selenium.WebDriver;
 import pageUIs.gofile.HomePageUI;
 
 public class HomePageObject extends BasePage {
-    public HomePageObject(WebDriver driver){
-        this.driver = driver;
-    }
+
     private WebDriver driver;
 
+    public HomePageObject(WebDriver driver) {
+        this.driver = driver;
+    }
 
     public boolean isLoadingIconDisappear() {
         return waitListElementInvisible(driver, HomePageUI.LOADING_ICON);
@@ -20,12 +22,12 @@ public class HomePageObject extends BasePage {
     }
 
     public String getSuccessLink() {
-        waitElementVisible(driver, HomePageUI.SUCCESS_CARD_LINK, textboxLabel);
+        waitElementVisible(driver, HomePageUI.SUCCESS_CARD_LINK);
         return getElementText(driver, HomePageUI.SUCCESS_CARD_LINK);
     }
 
     public boolean isFileUploadedSuccess(String fileName) {
-        waitElementVisible(driver, HomePageUI.UPLOADED_FILE_NAME,fileName);
-        return isElementDisplayed (driver, HomePageUI.UPLOADED_FILE_NAME,fileName);
+        waitElementVisible(driver, HomePageUI.UPLOADED_FILE_NAME, fileName);
+        return isElementDisplayed(driver, HomePageUI.UPLOADED_FILE_NAME, fileName);
     }
 }

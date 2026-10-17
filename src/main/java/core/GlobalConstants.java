@@ -49,6 +49,8 @@ public class GlobalConstants {
     public static final String JIRA_SITE_URL = "https://home.atlassian.com/";
     public static final String JIRA_USERNAME = "thuong29011997@gmail.com";
     public static final String JIRA_PROJECT_KEY = "FRAMEWORK";
+    public static final String JIRA_API_KEY =
+            System.getenv("JIRA_API_KEY");
 
     //BrowserStack
     public static final String BROWSER_STACK_USERNAME = "thuong_0TkWi6";

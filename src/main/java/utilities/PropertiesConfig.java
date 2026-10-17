@@ -1,3 +1,4 @@
+
 package utilities;
 
 import core.GlobalConstants;
@@ -9,6 +10,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class PropertiesConfig {
+
     private Properties properties;
 
     private final String propertyFilePath =
@@ -24,48 +26,55 @@ public class PropertiesConfig {
 
     public PropertiesConfig(String serverName) {
 
-        BufferedReader reader;
+        properties = new Properties();
 
-        try {
-            reader = new BufferedReader(new FileReader(String.format(propertyFilePath, serverName)));
-            properties = new Properties();
+        String filePath = String.format(propertyFilePath, serverName);
 
-            try {
-                properties.load(reader);
-                reader.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        try (BufferedReader reader =
+                     new BufferedReader(new FileReader(filePath))) {
+
+            properties.load(reader);
 
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            throw new RuntimeException("Configuration properties not found at " + propertyFilePath);
+            throw new RuntimeException(
+                    "Configuration properties not found at " + filePath, e);
+
+        } catch (IOException e) {
+            throw new RuntimeException(
+                    "Cannot read configuration properties at " + filePath, e);
         }
     }
 
-    public String getApplicationUrl(){
+    public String getApplicationUrl() {
         String url = properties.getProperty("App.Url");
-        if (url != null) return url;
-        else throw new RuntimeException("Url not special in the properties file.");
+
+        if (url != null && !url.trim().isEmpty()) {
+            return url;
+        }
+
+        throw new RuntimeException(
+                "URL not specified in the properties file.");
     }
 
     public String getApplicationUserName() {
         String username = properties.getProperty("App.User");
 
-        if (username != null) {
+        if (username != null && !username.trim().isEmpty()) {
             return username;
-        } else {
-            throw new RuntimeException("Username not specified in the properties file.");
         }
+
+        throw new RuntimeException(
+                "Username not specified in the properties file.");
     }
 
     public String getApplicationPassword() {
         String password = properties.getProperty("App.Pass");
 
-        if (password != null) {
+        if (password != null && !password.trim().isEmpty()) {
             return password;
-        } else {
-            throw new RuntimeException("Password not specified in the properties file.");
         }
+
+        throw new RuntimeException(
+                "Password not specified in the properties file.");
     }
 }

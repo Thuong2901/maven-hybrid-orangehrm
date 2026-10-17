@@ -1,11 +1,8 @@
-package com.orangeHRM;
 
-//import từ thư viện
+package com.orangeHRM;
 
 import core.BaseTest;
 import org.openqa.selenium.WebDriver;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
@@ -19,29 +16,35 @@ import pageObjects.orangeHRM.editNavigation.PersonalDetailPageObject;
 import utilities.ExcelConfig;
 import utilities.PropertiesConfig;
 
-
 public class Level_28_Cloud_Bitbar extends BaseTest {
-    EnvironmentConfig environmentConfig;
 
-    @Parameters({"environment", "platformName","platformVersion","browserName","browserVersion"})
+    @Parameters({"environment", "platformName", "platformVersion",
+            "browserName", "browserVersion"})
     @BeforeClass
-    public void beforeClass(String environment, String platformName,String platformVersion,String browserName,String browserVersion) {
-        ConfigFactory.setProperty("environment",environment);
-        environmentConfig = ConfigFactory.create(EnvironmentConfig.class);
+    public void beforeClass(
+            String environment,
+            String platformName,
+            String platformVersion,
+            String browserName,
+            String browserVersion) {
 
-        driver = getBrowserDriverSauceLab(environmentConfig.getAppUrl(),platformName,platformVersion,browserName,browserVersion);
+        propertiesConfig = PropertiesConfig.getProperties(environment);
 
-        loginPage = PageGenerator.getLoginPage(driver);
+        driver = getBrowserDriverSauceLab(
+                propertiesConfig.getApplicationUrl(),
+                platformName,
+                platformVersion,
+                browserName,
+                browserVersion
+        );
+
+        loginPage = PageGenerator.getPage(LoginPageObject.class, driver);
     }
 
     @Test
     public void Employee_01_NewEmployee() {
 
-
     }
-
-
-
 
     @AfterClass
     public void afterClass() {
@@ -56,6 +59,6 @@ public class Level_28_Cloud_Bitbar extends BaseTest {
     private PersonalDetailPageObject personalDetailPage;
     private ExcelConfig excelConfig;
     private PropertiesConfig propertiesConfig;
-    private String employeeID, adminUserName, adminPassword,employeeUsername,employeeEmail;
-
+    private String employeeID, adminUserName, adminPassword,
+            employeeUsername, employeeEmail;
 }

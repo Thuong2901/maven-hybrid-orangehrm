@@ -1,3 +1,4 @@
+
 package pageObjects.orangeHRM;
 
 import core.BasePage;
@@ -7,6 +8,7 @@ import pageObjects.PageGenerator;
 import pageUIs.orangeHRM.LoginPageUI;
 
 public class LoginPageObject extends BasePage {
+
     private WebDriver driver;
 
     public LoginPageObject(WebDriver driver) {
@@ -14,20 +16,19 @@ public class LoginPageObject extends BasePage {
     }
 
     public void enterToUsernameTextbox(String username) {
-        waitElementVisible(driver, LoginPageUI.USER_NAME_TEXTBOX, textboxLabel);
+        waitElementVisible(driver, LoginPageUI.USER_NAME_TEXTBOX);
         sendkeyToElement(driver, LoginPageUI.USER_NAME_TEXTBOX, username);
     }
 
     public void enterToPasswordTextbox(String password) {
-        waitElementVisible(driver, LoginPageUI.PASSWORD_TEXTBOX, textboxLabel);
+        waitElementVisible(driver, LoginPageUI.PASSWORD_TEXTBOX);
         sendkeyToElement(driver, LoginPageUI.PASSWORD_TEXTBOX, password);
     }
 
     public DashboardPageObject clickToLoginButton() {
         waitElementClickable(driver, LoginPageUI.LOGIN_BUTTON);
         clickToElement(driver, LoginPageUI.LOGIN_BUTTON);
-        return PageGenerator.getPage(DashboardPageObject.class,driver);
 
-
+        return PageGenerator.getPage(DashboardPageObject.class, driver);
     }
 }

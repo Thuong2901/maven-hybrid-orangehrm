@@ -1,6 +1,5 @@
-package com.orangeHRM;
 
-//import từ thư viện
+package com.orangeHRM;
 
 import core.BaseTest;
 import org.openqa.selenium.WebDriver;
@@ -19,30 +18,35 @@ import pageObjects.orangeHRM.editNavigation.PersonalDetailPageObject;
 import utilities.ExcelConfig;
 import utilities.PropertiesConfig;
 
-
 public class Level_28_Lambda extends BaseTest {
-    EnvironmentConfig environmentConfig;
 
-    @Parameters({ "server", "os", "browser", "browser_version" })
+    private static final Logger log =
+            LoggerFactory.getLogger(Level_28_Lambda.class);
+
+    @Parameters({"server", "os", "browser", "browser_version"})
     @BeforeClass
-    public void beforeClass(String serverName, String osName, String browserName, String browserVersion) {
-        ConfigFactory.setProperty("environment",environment);
-        environmentConfig = ConfigFactory.create(EnvironmentConfig.class);
+    public void beforeClass(
+            String serverName,
+            String osName,
+            String browserName,
+            String browserVersion) {
 
-        driver = getBrowserDriverLambda(environmentConfig.appUrl(), osName, browserName, browserVersion);
+        propertiesConfig = PropertiesConfig.getProperties(serverName);
 
-        loginPage = PageGenerator.getLoginPage(driver);
+        driver = getBrowserDriverLambda(
+                propertiesConfig.getApplicationUrl(),
+                osName,
+                browserName,
+                browserVersion
+        );
 
+        loginPage = PageGenerator.getPage(LoginPageObject.class, driver);
     }
 
     @Test
     public void Employee_01_NewEmployee() {
 
-
     }
-
-
-
 
     @AfterClass
     public void afterClass() {
@@ -57,6 +61,7 @@ public class Level_28_Lambda extends BaseTest {
     private PersonalDetailPageObject personalDetailPage;
     private ExcelConfig excelConfig;
     private PropertiesConfig propertiesConfig;
-    private String employeeID, adminUserName, adminPassword,employeeUsername,employeeEmail;
 
+    private String employeeID, adminUserName, adminPassword,
+            employeeUsername, employeeEmail;
 }

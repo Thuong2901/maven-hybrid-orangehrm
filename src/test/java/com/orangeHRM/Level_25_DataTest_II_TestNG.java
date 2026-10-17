@@ -22,29 +22,41 @@ public class Level_25_DataTest_II_TestNG extends BaseTest {
 
 
 
-    @Parameters({"appUrl", "browser","adminUserName","adminPassword"})
+
+    @Parameters({"appUrl", "browser", "adminUserName", "adminPassword"})
     @BeforeClass
-    public void beforeClass(String appURL, String browserName, String adminPassword, String adminPassword) {
+    public void beforeClass(String appURL, String browserName,
+                            String adminUserName, String adminPassword) {
         driver = getBrowserDriver(appURL, browserName);
 
         loginPage = PageGenerator.getPage(LoginPageObject.class, driver);
         employeeID = String.valueOf(getRandomNumber());
 
-        loginPage.enterToTextboxByLabel(driver,"Username",adminUserName);
-        loginPage.enterToTextboxByLabel(driver,"Password",adminPassword);
+        loginPage.enterToTextboxByLabel(driver, "Username", adminUserName);
+        loginPage.enterToTextboxByLabel(driver, "Password", adminPassword);
 
-        loginPage.clickToButtonByText(driver,"Login");
-        dashboardPage=PageGenerator.getPage(DashboardPageObject.class,driver);
+        loginPage.clickToButtonByText(driver, "Login");
+        dashboardPage = PageGenerator.getPage(DashboardPageObject.class, driver);
 
         Assert.assertFalse(dashboardPage.isLoadingSpinnerDisappear(driver));
         dashboardPage.sleepInSecond(2);
 
-        verifyFalse(dashboardPage.isModuleByTextInMenuItemDisplayed(driver,"Admin"));
+        verifyFalse(dashboardPage.isModuleByTextInMenuItemDisplayed(driver, "Admin"));
     }
 
-    @Parameters({"employeeFirstName", "employeeLastName","employeePassword","employeeDOB","employeeGender","employeeStatus","employeeUsername"})
+
+    @Parameters({"employeeFirstName", "employeeLastName", "employeePassword",
+            "employeeDOB", "employeeGender", "employeeStatus", "employeeUsername"})
     @Test
-    public void Employee_01_NewEmployee(String employeeFirstName,String employeeLastName,String employeePassword,String employeeDOB,String employeeGender,String employeeGender,String employeeStatus,String employeeUsername) {
+    public void Employee_01_NewEmployee(
+            String employeeFirstName,
+            String employeeLastName,
+            String employeePassword,
+            String employeeDOB,
+            String employeeGender,
+            String employeeStatus,
+            String employeeUsername) {
+
 
         dashboardPage.clickToModuleByTextInMenuItem(driver,"PIM");
         employeeListPage = PageGenerator.getPage(EmployeeListPageObject.class,driver);

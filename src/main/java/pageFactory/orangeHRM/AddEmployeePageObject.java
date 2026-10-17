@@ -24,12 +24,69 @@ public class AddEmployeePageObject extends BasePageFactory {
     @FindBy(xpath = "//button[contains(string(),'Save')]")
     private WebElement saveButton;
 
+    @FindBy(xpath = "//label[text()='Employee Name']/parent::div/following-sibling::div//input")
+    private WebElement employeeNameTextbox;
+
+    @FindBy(xpath = "//label[text()='Gender']/parent::div/following-sibling::div//input")
+    private List<WebElement> genderRadioButtons;
+
+    @FindBy(xpath = "//button")
+    private List<WebElement> buttons;
+
     private List<WebElement> loadingSpinner;
 
 
     public AddEmployeePageObject(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver,this);
+    }
+    public void enterToTextboxByName(
+            WebDriver driver, String textboxName, String value) {
+        if (textboxName.equals("firstName")) {
+            waitElementVisible(driver, firstNameTextbox);
+            sendkeyToElement(firstNameTextbox, value);
+        } else if (textboxName.equals("lastName")) {
+            waitElementVisible(driver, lastNameTextbox);
+            sendkeyToElement(lastNameTextbox, value);
+        } else {
+            throw new IllegalArgumentException(
+                    "Textbox name chưa được hỗ trợ: " + textboxName);
+        }
+    }
+
+    public String getTextboxValueByLabel(
+            WebDriver driver, String label) {
+        if (label.equals("Employee Id")) {
+            waitElementVisible(driver, employeeIDTextbox);
+            return getElementDOMProperty(employeeIDTextbox, "value");
+        }
+        throw new IllegalArgumentException(
+                "Label chưa được hỗ trợ: " + label);
+    }
+
+    public void enterToTextboxByLabel(
+            WebDriver driver, String label, String value) {
+        if (label.equals("First Name")) {
+            enterToFirstNameTextbox(value);
+        } else if (label.equals("Last Name")) {
+            enterToLastNameTextbox(value);
+        } else {
+            throw new IllegalArgumentException(
+                    "Label chưa được hỗ trợ: " + label);
+        }
+    }
+
+    public void clickToButtonByText(
+            WebDriver driver, String buttonText) {
+        for (WebElement button : buttons) {
+            if (button.getText().trim().equals(buttonText)) {
+                waitElementClickable(driver, button);
+                clickToElement(button);
+                return;
+            }
+        }
+        throw new IllegalArgumentException(
+                "Không tìm thấy button: " + buttonText);
     }
 
     public void enterToFirstNameTextbox(String firstName) {
@@ -53,7 +110,7 @@ public class AddEmployeePageObject extends BasePageFactory {
     public PersonalDetailPageObject clickToSaveButton() {
         waitElementClickable(driver, saveButton);
         clickToElement(saveButton);
-        return null;
+        return new PersonalDetailPageObject(driver);
     }
 
     public boolean isLoadingSpinnerDisappear(WebDriver driver){
