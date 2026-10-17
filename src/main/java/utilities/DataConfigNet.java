@@ -27,7 +27,7 @@ public class DataConfigNet {
     }
 
     public String getPassword(){
-        return faker.credentials().password(8,12,true,true,true)
+        return faker.credentials().password(8,12,true,true,true);
     }
 
     public String getRandomNumber(){
