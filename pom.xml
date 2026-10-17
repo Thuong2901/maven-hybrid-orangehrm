@@ -12,8 +12,11 @@
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
         <jackson.version>2.21.3</jackson.version>
+        <aspectj.version>1.9.25.1</aspectj.version>
         <environmentName>Dev</environmentName>
+
     </properties>
 <dependencies>
     <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
@@ -50,6 +53,16 @@
         <artifactId>extentreports</artifactId>
         <version>2.41.2</version>
     </dependency>
+
+
+    <!-- AspectJ dùng cho Allure @Step -->
+    <dependency>
+        <groupId>org.aspectj</groupId>
+        <artifactId>aspectjweaver</artifactId>
+        <version>${aspectj.version}</version>
+        <scope>test</scope>
+    </dependency>
+
 
     <!-- ExtentReports phiên bản 5: dùng bởi reportConfig -->
     <dependency>
