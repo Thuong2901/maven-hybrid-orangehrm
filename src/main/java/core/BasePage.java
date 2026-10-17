@@ -386,12 +386,12 @@ public class BasePage {
         return driver.manage().getCookies();
     }
 
-    public void setPageCookies(WebDriver driver,Set<Cookie>){
-        for (Cookie cookie : cookies){
+    /*public void setPageCookies(WebDriver driver, Set<Cookie> cookies) {
+        for (Cookie cookie : cookies) {
             driver.manage().addCookie(cookie);
         }
         sleepInSecond(3);
-    }
+    }*/
 
     public boolean isElementSelected(WebDriver driver, String locator,String...restValue) {
         return getWebElement(driver, castParameter(locator,restValue)).isSelected();
