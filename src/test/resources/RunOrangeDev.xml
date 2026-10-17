@@ -8,7 +8,7 @@
         <parameter name="browser" value="Edge"/>
 
         <classes>
-            <class name="com.orangeHRM.Level_01_DRY"/>
+            <class name="com.orangeHRM.Level_23_Browser_Config"/>
         </classes>
 
     </test>

@@ -86,6 +86,11 @@ public class BasePageFactory {
         }
     }
 
+    public boolean waitElementInvisible(WebDriver driver, By locator) {
+        return new WebDriverWait(driver, Duration.ofSeconds(LONG_TIMEOUT))
+                .until(ExpectedConditions.invisibilityOfElementLocated(locator));
+    }
+
     public void switchToWindowByTitle(WebDriver driver, String expectedTitle) {
         Set<String> allWindows = driver.getWindowHandles();
 

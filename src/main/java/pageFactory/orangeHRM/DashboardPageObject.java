@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import pageObjects.orangeHRM.EmployeeListPageObject;
+import org.openqa.selenium.By;
 
 import java.util.List;
 
@@ -19,6 +20,7 @@ public class DashboardPageObject extends BasePageFactory {
     @FindBy(xpath = "//span[text()='PIM']/parent::a")
     private List<WebElement> pimModuleList;
 
+    @FindBy(css = "div.oxd-loading-spinner")
     private List<WebElement> loadingSpinner;
 
     @FindBy(xpath = "//aside//a")
@@ -63,6 +65,7 @@ public class DashboardPageObject extends BasePageFactory {
     }
 
     public boolean isLoadingSpinnerDisappear(WebDriver driver) {
-        return waitListElementInvisible(driver, loadingSpinner);
+        return waitElementInvisible(
+                driver, By.cssSelector("div.oxd-loading-spinner"));
     }
 }

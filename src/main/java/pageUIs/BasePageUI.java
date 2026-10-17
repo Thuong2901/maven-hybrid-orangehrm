@@ -3,7 +3,10 @@ package pageUIs;
 public class BasePageUI {
     //orangeHRM
     public static final String SPINNER_ICON="Css=div.oxd-loading-spinner";
-    public static final String TEXTBOX_BY_LABEL ="XPath=//label[text()\"%s\"]/parent::div/following-sibling::div//input";
+
+    public static final String TEXTBOX_BY_LABEL =
+            "XPath=//label[text()=\"%s\"]/parent::div/following-sibling::div//input";
+
     public static final String TEXTBOX_BY_NAME="XPath=//input[@name='%s']";
     public static final String BUTTON_BY_TEXT="XPath=//button[contains(string(),'%s')]";
     public static final String BUTTON_BY_TEXT_IN_MAIN_TITLE="XPath=//h6[text()='%s']/following-sibling::form//button[contains(string(),'%s')]";
